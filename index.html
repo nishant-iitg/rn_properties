@@ -26,6 +26,11 @@
       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
       backdrop-filter: blur(6px);
       border-radius: 1.5rem;
+      transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1), transform 0.25s cubic-bezier(.4,0,.2,1);
+    }
+    .glass:hover, .glass:focus-within {
+      box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.24), 0 4px 16px 0 rgba(37,99,235,0.12);
+      transform: translateY(-3px) scale(1.03);
     }
     .gradient-bg {
       background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
@@ -34,8 +39,49 @@
       background: rgba(30, 41, 59, 0.6);
       box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
     }
+    .dark .glass:hover, .dark .glass:focus-within {
+      box-shadow: 0 12px 36px 0 rgba(0,0,0,0.65), 0 4px 16px 0 rgba(37,99,235,0.16);
+    }
     .dark .gradient-bg {
       background: linear-gradient(90deg, #0f172a 0%, #2563eb 100%);
+    }
+    /* Modal overlay transitions */
+    #propertyModal {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
+    }
+    #propertyModal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Modal content animation */
+    #propertyModal .modal-content {
+      transform: translateY(48px) scale(0.97);
+      opacity: 0;
+      transition: transform 0.33s cubic-bezier(.4,0,.2,1), opacity 0.33s cubic-bezier(.4,0,.2,1);
+    }
+    #propertyModal.show .modal-content {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    /* Carousel image fade */
+    #modalImg {
+      transition: opacity 0.3s cubic-bezier(.4,0,.2,1);
+      opacity: 1;
+    }
+    #modalImg.fading {
+      opacity: 0;
+    }
+    /* Button hover effect */
+    .btn-animated {
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .btn-animated:hover, .btn-animated:focus {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 2px 8px 0 rgba(37,99,235,0.12);
+      transform: scale(1.07);
     }
   </style>
 </head>
@@ -99,34 +145,46 @@
     <h3 class="text-3xl font-bold mb-10 text-blue-700 text-center dark:text-gray-100">Featured Properties</h3>
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       <!-- Property Card Example -->
-      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card"
+      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card btn-animated"
         data-title="3 Acre Land"
         data-location="Amritsar"
         data-price="Rs. 45,00,000"
         data-description="A spacious 3 acre land ideal for farming or investment. Located near the city with easy access to main roads."
         data-tags='["Featured","New Listing"]'
         data-features='["3 Acres","Clear Title","Road Access","Water Supply"]'
-        data-images='["https://aipl.com/wp-content/uploads/2023/07/dca-4.webp","https://images.unsplash.com/photo-1506744038136-46273834b3fb","https://images.unsplash.com/photo-1464983953574-0892a716854b"]'>
+        data-images='["https://aipl.com/wp-content/uploads/2023/07/dca-4.webp","https://images.unsplash.com/photo-1506744038136-46273834b3fb","https://images.unsplash.com/photo-1464983953574-0892a716854b"]'
+        data-link="https://rnproperties.com/property/3-acre-land">
         <img src="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp" alt="3 Acre Land in Amritsar" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none">
         <div class="flex flex-wrap gap-2 mb-2">
-          <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200">Featured</span>
-          <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded dark:bg-green-900 dark:text-green-200">New Listing</span>
+          <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200 flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Featured
+          </span>
+          <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded dark:bg-green-900 dark:text-green-200 flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            New Listing
+          </span>
         </div>
         <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">3 Acre Land</h4>
         <p class="text-gray-500 text-base mb-2 dark:text-gray-400">Amritsar</p>
         <p class="text-blue-600 font-bold text-lg dark:text-gray-200">Rs. 45,00,000</p>
       </button>
-      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card"
+      
+      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card btn-animated"
         data-title="Old Colony Plot"
         data-location="Amritsar"
         data-price="Rs. 16,00,000"
         data-description="A well-located plot in the Old Colony, perfect for residential construction. Peaceful neighborhood with all amenities nearby."
         data-tags='["Popular"]'
         data-features='["500 sq yards","Gated Colony","Near Park"]'
-        data-images='["https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg","https://images.unsplash.com/photo-1507089947368-19c1da9775ae"]'>
+        data-images='["https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg","https://images.unsplash.com/photo-1507089947368-19c1da9775ae"]'
+        data-link="https://rnproperties.com/property/old-colony-plot">
         <img src="https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg" alt="Old Colony Plot in Amritsar" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none">
         <div class="flex flex-wrap gap-2 mb-2">
-          <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded dark:bg-yellow-900 dark:text-yellow-200">Popular</span>
+          <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded dark:bg-yellow-900 dark:text-yellow-200 flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Popular
+          </span>
         </div>
         <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">Old Colony Plot</h4>
         <p class="text-gray-500 text-base mb-2 dark:text-gray-400">Amritsar</p>
@@ -137,14 +195,27 @@
 
   <!-- Modal Overlay -->
   <div id="propertyModal" class="fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 hidden">
-    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col md:flex-row w-[95vw] max-w-3xl overflow-hidden relative">
-      <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-2xl font-bold">&times;</button>
+    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col md:flex-row w-[95vw] max-w-3xl overflow-hidden relative modal-content" id="modalContent">
+      <!-- Modal Top Bar for Controls -->
+      <div class="absolute top-0 left-0 w-full flex justify-between items-center z-30 px-4 pt-3 md:pt-4 pointer-events-none">
+        <div class="flex gap-2">
+          <button id="fullscreenBtn" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto" title="Toggle Full Screen" aria-label="Toggle Full Screen" style="backdrop-filter: blur(4px);">
+            <svg id="fullscreenIcon" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="flex gap-2">
+          <button id="shareBtn" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto" title="Share Property" aria-label="Share Property" style="backdrop-filter: blur(4px);">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button id="closeModal" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-2xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto ml-1" title="Close" aria-label="Close" style="backdrop-filter: blur(4px);">&times;</button>
+        </div>
+      </div>
       <!-- Image Carousel -->
-      <div class="flex flex-col md:w-1/2 bg-black/10 dark:bg-slate-800">
-        <div class="relative flex items-center justify-center h-64 md:h-full">
-          <button id="prevImg" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
-          <img id="modalImg" src="" alt="Property Image" class="rounded-xl w-full h-64 object-cover shadow-md dark:shadow-none select-none">
-          <button id="nextImg" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+      <div class="flex flex-col md:w-1/2 bg-black/10 dark:bg-slate-800" id="modalImageCol">
+        <div class="relative flex items-center justify-center h-64 md:h-full" id="modalImageWrapper">
+          <button id="prevImg" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10 btn-animated"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+          <img id="modalImg" src="" alt="Property Image" class="rounded-xl w-full h-64 object-cover shadow-md dark:shadow-none select-none transition-all duration-300" style="max-height:100%; max-width:100%;">
+          <button id="nextImg" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10 btn-animated"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
         </div>
         <div id="modalThumbnails" class="flex gap-2 justify-center mt-2 px-2 pb-2"></div>
       </div>
@@ -175,12 +246,22 @@
     const modalThumbnails = document.getElementById('modalThumbnails');
     const prevImg = document.getElementById('prevImg');
     const nextImg = document.getElementById('nextImg');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const fullscreenIcon = document.getElementById('fullscreenIcon');
+    const modalContent = document.getElementById('modalContent');
+    const shareBtn = document.getElementById('shareBtn');
     let currentImages = [];
     let currentImgIdx = 0;
+    let currentLink = '';
+    let isFullscreen = false;
 
     function updateModalImage(idx) {
       if (currentImages.length === 0) return;
-      modalImg.src = currentImages[idx];
+      modalImg.classList.add('fading');
+      setTimeout(() => {
+        modalImg.src = currentImages[idx];
+        modalImg.onload = () => modalImg.classList.remove('fading');
+      }, 120);
       // Highlight thumbnail
       Array.from(modalThumbnails.children).forEach((thumb, i) => {
         thumb.classList.toggle('ring-2', i === idx);
@@ -200,7 +281,7 @@
           const thumb = document.createElement('img');
           thumb.src = img;
           thumb.alt = 'Thumbnail';
-          thumb.className = 'w-12 h-12 rounded cursor-pointer object-cover border border-gray-200 dark:border-slate-700';
+          thumb.className = 'w-12 h-12 rounded cursor-pointer object-cover border border-gray-200 dark:border-slate-700 transition';
           thumb.addEventListener('click', () => {
             currentImgIdx = i;
             updateModalImage(currentImgIdx);
@@ -217,20 +298,85 @@
         modalTags.innerHTML = '';
         JSON.parse(card.getAttribute('data-tags')).forEach(tag => {
           const tagSpan = document.createElement('span');
-          tagSpan.className = 'bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200';
-          tagSpan.textContent = tag;
+          tagSpan.className = 'bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200 flex items-center gap-1';
+          // Custom icon for tags
+          let icon = '';
+          if(tag === 'Featured') icon = `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"#2563eb\"/><path d=\"M8 12l2.5 2.5L16 9\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>`;
+          if(tag === 'New Listing') icon = `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"#22c55e\"/><path d=\"M8 12l2.5 2.5L16 9\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>`;
+          if(tag === 'Popular') icon = `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"#eab308\"/><path d=\"M8 12l2.5 2.5L16 9\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>`;
+          tagSpan.innerHTML = icon + tag;
           modalTags.appendChild(tagSpan);
         });
         // Features
         modalFeatures.innerHTML = '';
         JSON.parse(card.getAttribute('data-features')).forEach(feature => {
           const featSpan = document.createElement('span');
-          featSpan.className = 'bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded dark:bg-slate-700 dark:text-gray-200';
-          featSpan.textContent = feature;
+          featSpan.className = 'bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded dark:bg-slate-700 dark:text-gray-200 flex items-center gap-1';
+          // SVG icon for feature
+          featSpan.innerHTML = `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"#2563eb\" stroke-width=\"2\" fill=\"none\"/><path d=\"M8 12l2.5 2.5L16 9\" stroke=\"#2563eb\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg> ` + feature;
           modalFeatures.appendChild(featSpan);
         });
+        // Property link for share
+        currentLink = card.getAttribute('data-link') || window.location.href;
+        modal.classList.add('show');
         modal.classList.remove('hidden');
       });
+    });
+    // Fullscreen toggle logic
+    fullscreenBtn.addEventListener('click', () => {
+      isFullscreen = !isFullscreen;
+      if(isFullscreen) {
+        modalContent.classList.add('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
+        modalContent.style.maxWidth = '100vw';
+        document.getElementById('modalImageCol').classList.remove('md:w-1/2');
+        document.getElementById('modalImageCol').classList.add('w-full','h-full','flex-row');
+        document.getElementById('modalImageWrapper').classList.remove('h-64','md:h-full');
+        document.getElementById('modalImageWrapper').classList.add('h-full');
+        modalImg.classList.remove('h-64');
+        modalImg.classList.add('h-full','object-contain');
+        modalImg.style.maxHeight = '100vh';
+        modalImg.style.maxWidth = '100vw';
+      } else {
+        modalContent.classList.remove('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
+        modalContent.style.maxWidth = '';
+        document.getElementById('modalImageCol').classList.remove('w-full','h-full','flex-row');
+        document.getElementById('modalImageCol').classList.add('md:w-1/2');
+        document.getElementById('modalImageWrapper').classList.remove('h-full');
+        document.getElementById('modalImageWrapper').classList.add('h-64','md:h-full');
+        modalImg.classList.remove('h-full','object-contain');
+        modalImg.classList.add('h-64');
+        modalImg.style.maxHeight = '';
+        modalImg.style.maxWidth = '';
+      }
+    });
+    // Share button logic
+    shareBtn.addEventListener('click', () => {
+      const shareUrl = currentLink;
+      const shareText = encodeURIComponent('Check out this property on RN Properties!');
+      const whatsapp = `https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`;
+      const mailto = `mailto:?subject=Property%20from%20RN%20Properties&body=${shareText}%20${encodeURIComponent(shareUrl)}`;
+      // Show a simple share menu (prompt)
+      const menu = document.createElement('div');
+      menu.innerHTML = `
+        <div class='fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center' id='shareMenuBg'>
+          <div class='bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl flex flex-col gap-4 min-w-[260px]'>
+            <button class='btn-animated flex items-center gap-2' id='copyLinkBtn'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='9' y='9' width='13' height='13' rx='2' ry='2' stroke='currentColor' stroke-width='2' fill='none'/><path d='M5 15V5a2 2 0 012-2h10a2 2 0 012 2v10' stroke-linecap='round' stroke-linejoin='round'/></svg>Copy Link</button>
+            <a href='${whatsapp}' target='_blank' class='btn-animated flex items-center gap-2'><svg class='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'><path d='M20.52 3.48A12 12 0 003.48 20.52l-1.08 3.96 3.96-1.08A12 12 0 0020.52 3.48zm-8.52 17A10 10 0 1119 5a10 10 0 01-7 15.48zm5.66-7.09c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1.01 1.25-.18.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.59-.96-.85-1.6-1.89-1.79-2.21-.19-.32-.02-.49.14-.64.15-.15.32-.4.48-.6.16-.21.21-.37.32-.61.11-.24.05-.45-.03-.61-.08-.16-.71-1.71-.97-2.35-.26-.63-.53-.55-.73-.56-.19-.01-.41-.01-.63-.01-.22 0-.57.08-.87.37-.29.29-1.13 1.1-1.13 2.67s1.16 3.1 1.32 3.31c.16.21 2.27 3.47 5.51 4.72.77.27 1.37.43 1.84.55.77.2 1.47.17 2.02.1.62-.08 1.88-.77 2.15-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37z'/></svg>Share on WhatsApp</a>
+            <a href='${mailto}' class='btn-animated flex items-center gap-2'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path d='M4 4h16v16H4z' stroke-linecap='round' stroke-linejoin='round'/><path d='M22 6l-10 7L2 6' stroke-linecap='round' stroke-linejoin='round'/></svg>Share via Email</a>
+            <button class='btn-animated mt-2' id='closeShareMenu'>Close</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(menu);
+      // Copy link
+      document.getElementById('copyLinkBtn').onclick = () => {
+        navigator.clipboard.writeText(shareUrl);
+        document.getElementById('copyLinkBtn').textContent = 'Copied!';
+        setTimeout(() => document.getElementById('copyLinkBtn').textContent = 'Copy Link', 1500);
+      };
+      // Close menu
+      document.getElementById('closeShareMenu').onclick = () => menu.remove();
+      document.getElementById('shareMenuBg').onclick = (e) => { if(e.target.id === 'shareMenuBg') menu.remove(); };
     });
     prevImg.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -247,13 +393,20 @@
       }
     });
     closeModal.addEventListener('click', () => {
-      modal.classList.add('hidden');
+      modal.classList.remove('show');
+      setTimeout(() => modal.classList.add('hidden'), 350);
     });
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.add('hidden');
+      if (e.target === modal) {
+        modal.classList.remove('show');
+        setTimeout(() => modal.classList.add('hidden'), 350);
+      }
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') modal.classList.add('hidden');
+      if (e.key === 'Escape') {
+        modal.classList.remove('show');
+        setTimeout(() => modal.classList.add('hidden'), 350);
+      }
       if (e.key === 'ArrowLeft') prevImg.click();
       if (e.key === 'ArrowRight') nextImg.click();
     });
