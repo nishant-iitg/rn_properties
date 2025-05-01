@@ -3,109 +3,184 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real Estate Agent</title>
+  <title>RN Properties | Modern Real Estate</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2563eb',
+            secondary: '#38bdf8'
+          }
+        }
+      }
+    }
+  </script>
   <style>
     body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+      backdrop-filter: blur(6px);
+      border-radius: 1.5rem;
+    }
+    .gradient-bg {
+      background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+    }
+    .dark .glass {
+      background: rgba(30, 41, 59, 0.6);
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
+    }
+    .dark .gradient-bg {
+      background: linear-gradient(90deg, #0f172a 0%, #2563eb 100%);
+    }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen text-gray-800 dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-gray-100">
+
+  <!-- Dark Mode Toggle -->
+  <div class="fixed top-6 right-6 z-50">
+    <button id="toggleDark" aria-label="Toggle dark mode" class="p-2 rounded-full bg-white/80 dark:bg-slate-700 shadow hover:scale-110 transition">
+      <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-12.34l-.71.71M4.05 19.95l-.71.71m16.97 0l-.71-.71M4.05 4.05l-.71-.71M21 12h1M2 12H1m16.24 7.24l-.71-.71M7.76 4.76l-.71-.71"/><circle cx="12" cy="12" r="5"/></svg>
+      <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-200 hidden dark:inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
+    </button>
+  </div>
+  <script>
+    // Dark mode toggle logic
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById('toggleDark');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    function setDarkMode(on) {
+      if(on) {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    // Load preference
+    if(localStorage.getItem('theme') === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme'))) {
+      setDarkMode(true);
+    }
+    toggleBtn.addEventListener('click', () => {
+      setDarkMode(!html.classList.contains('dark'));
+    });
+  </script>
 
   <!-- Header -->
-  <header class="bg-white shadow p-6">
+  <header class="gradient-bg shadow p-6 sticky top-0 z-20 dark:shadow-none">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-600">RN Properties</h1>
-      <nav class="mt-4 sm:mt-0 space-x-4 text-sm">
-        <a href="#listings" class="text-gray-600 hover:text-blue-600">Listings</a>
-        <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
-        <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+      <h1 class="text-3xl font-extrabold text-white tracking-wide drop-shadow-lg dark:text-gray-100">RN Properties</h1>
+      <nav class="mt-4 sm:mt-0 space-x-6 text-base">
+        <a href="#listings" class="text-white/80 hover:text-white font-medium transition dark:text-gray-300 dark:hover:text-gray-100">Listings</a>
+        <a href="#about" class="text-white/80 hover:text-white font-medium transition dark:text-gray-300 dark:hover:text-gray-100">About</a>
+        <a href="#contact" class="text-white/80 hover:text-white font-medium transition dark:text-gray-300 dark:hover:text-gray-100">Contact</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="bg-blue-100 py-16 text-center">
-    <h2 class="text-3xl sm:text-4xl font-semibold mb-4">Find Your Dream Property</h2>
-    <p class="text-gray-700 max-w-xl mx-auto">Explore beautiful properties handpicked by your trusted local real estate expert.</p>
+  <section class="relative py-24 flex flex-col items-center justify-center text-center">
+    <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-200/60 to-white pointer-events-none dark:bg-gradient-to-br dark:from-slate-800 dark:via-slate-900 dark:to-slate-900"></div>
+    <div class="relative z-10">
+      <h2 class="text-4xl sm:text-5xl font-extrabold mb-4 text-blue-700 drop-shadow-lg dark:text-gray-100">Find Your Dream Property</h2>
+      <p class="text-gray-700 max-w-2xl mx-auto text-lg mb-8 dark:text-gray-300">Explore beautiful properties handpicked by your trusted local real estate expert.</p>
+      <a href="#listings" class="inline-block px-8 py-3 rounded-full gradient-bg text-white font-semibold shadow-lg hover:scale-105 transition dark:bg-gradient-to-r dark:from-slate-700 dark:via-slate-800 dark:to-slate-900 dark:text-gray-100">Browse Listings</a>
+    </div>
   </section>
 
   <!-- Property Listings -->
   <section id="listings" class="py-16 max-w-6xl mx-auto px-4">
-    <h3 class="text-2xl font-semibold mb-8">Featured Properties</h3>
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      
+    <h3 class="text-3xl font-bold mb-10 text-blue-700 text-center dark:text-gray-100">Featured Properties</h3>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       <!-- Property Card -->
-      <div class="bg-white rounded-xl shadow p-4">
-        <img src="https://via.placeholder.com/400x250" alt="Property" class="rounded-md mb-4 w-full">
-        <h4 class="text-lg font-semibold">3 Acre Land</h4>
-        <p class="text-gray-500 text-sm mb-2">Amritsar</p>
-        <p class="text-blue-600 font-bold">Rs. 45,00,000</p>
-      </div>
-
-      <!-- Duplicate the card with different content for more listings -->
-      <div class="bg-white rounded-xl shadow p-4">
-        <img src="https://via.placeholder.com/400x250" alt="Property" class="rounded-md mb-4 w-full">
-        <h4 class="text-lg font-semibold">Old Colony Plot</h4>
-        <p class="text-gray-500 text-sm mb-2">Amritsar</p>
-        <p class="text-blue-600 font-bold">Rs. 16,00,000</p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow p-4">
-        <img src="https://via.placeholder.com/400x250" alt="Property" class="rounded-md mb-4 w-full">
-        <h4 class="text-lg font-semibold">Old Colony Plot</h4>
-        <p class="text-gray-500 text-sm mb-2">Amritsar</p>
-        <p class="text-blue-600 font-bold">Rs. 16,00,000</p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow p-4">
-        <img src="https://via.placeholder.com/400x250" alt="Property" class="rounded-md mb-4 w-full">
-        <h4 class="text-lg font-semibold">Old Colony Plot</h4>
-        <p class="text-gray-500 text-sm mb-2">Amritsar</p>
-        <p class="text-blue-600 font-bold">Rs. 16,00,000</p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow p-4">
-        <img src="https://via.placeholder.com/400x250" alt="Property" class="rounded-md mb-4 w-full">
-        <h4 class="text-lg font-semibold">Old Colony Plot</h4>
-        <p class="text-gray-500 text-sm mb-2">Amritsar</p>
-        <p class="text-blue-600 font-bold">Rs. 16,00,000</p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow p-4">
-        <img src="https://via.placeholder.com/400x250" alt="Property" class="rounded-md mb-4 w-full">
-        <h4 class="text-lg font-semibold">Old Colony Plot</h4>
-        <p class="text-gray-500 text-sm mb-2">Amritsar</p>
-        <p class="text-blue-600 font-bold">Rs. 16,00,000</p>
-      </div>
-
+      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card" data-title="3 Acre Land" data-location="Amritsar" data-price="Rs. 45,00,000" data-img="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+        <img src="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp" alt="3 Acre Land in Amritsar" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none">
+        <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">3 Acre Land</h4>
+        <p class="text-gray-500 text-base mb-2 dark:text-gray-400">Amritsar</p>
+        <p class="text-blue-600 font-bold text-lg dark:text-gray-200">Rs. 45,00,000</p>
+      </button>
+      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card" data-title="Old Colony Plot" data-location="Amritsar" data-price="Rs. 16,00,000" data-img="https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg">
+        <img src="https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg" alt="Old Colony Plot in Amritsar" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none">
+        <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">Old Colony Plot</h4>
+        <p class="text-gray-500 text-base mb-2 dark:text-gray-400">Amritsar</p>
+        <p class="text-blue-600 font-bold text-lg dark:text-gray-200">Rs. 16,00,000</p>
+      </button>
     </div>
   </section>
 
+  <!-- Modal Overlay -->
+  <div id="propertyModal" class="fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 hidden">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col md:flex-row w-[90vw] max-w-3xl overflow-hidden relative">
+      <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-2xl font-bold">&times;</button>
+      <img id="modalImg" src="" alt="Property Image" class="w-full md:w-1/2 h-64 md:h-auto object-cover">
+      <div class="p-8 flex flex-col justify-center w-full md:w-1/2">
+        <h4 id="modalTitle" class="text-2xl font-bold mb-2 text-blue-700 dark:text-gray-100"></h4>
+        <p id="modalLocation" class="text-gray-600 mb-2 dark:text-gray-300"></p>
+        <p id="modalPrice" class="text-blue-600 font-bold text-lg dark:text-blue-300"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal functionality
+    const propertyCards = document.querySelectorAll('.property-card');
+    const modal = document.getElementById('propertyModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalLocation = document.getElementById('modalLocation');
+    const modalPrice = document.getElementById('modalPrice');
+
+    propertyCards.forEach(card => {
+      card.addEventListener('click', () => {
+        modalImg.src = card.getAttribute('data-img');
+        modalTitle.textContent = card.getAttribute('data-title');
+        modalLocation.textContent = card.getAttribute('data-location');
+        modalPrice.textContent = card.getAttribute('data-price');
+        modal.classList.remove('hidden');
+      });
+    });
+    closeModal.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.add('hidden');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') modal.classList.add('hidden');
+    });
+  </script>
+
   <!-- About Section -->
-  <section id="about" class="bg-white py-16 px-4">
+  <section id="about" class="bg-white/80 backdrop-blur-lg py-16 px-4 dark:bg-slate-800 dark:backdrop-blur-lg">
     <div class="max-w-3xl mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-4">About RN Properties</h3>
-      <p class="text-gray-600">Sanjeev Aggarwal is a passionate real estate agent with 10+ years of experience helping families find the perfect place to call Property. Whether you're buying, selling, or renting, Sanjeev Aggarwal is here to help every step of the way.</p>
+      <h3 class="text-3xl font-bold mb-4 text-blue-700 dark:text-gray-100">About RN Properties</h3>
+      <p class="text-gray-700 text-lg dark:text-gray-300">Sanjeev Aggarwal is a passionate real estate agent with 10+ years of experience helping families find the perfect place to call home. Whether you're buying, selling, or renting, Sanjeev Aggarwal is here to help every step of the way.</p>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="bg-blue-50 py-16 px-4">
+  <section id="contact" class="bg-gradient-to-r from-blue-100 via-white to-blue-100 py-16 px-4 dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
     <div class="max-w-xl mx-auto">
-      <h3 class="text-2xl font-semibold mb-4 text-center">Contact</h3>
-      <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-4">
-        <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border rounded-lg">
-        <input type="email" name="_replyto" placeholder="Your Email" required class="w-full p-3 border rounded-lg">
-        <textarea name="message" rows="5" placeholder="Your Message" required class="w-full p-3 border rounded-lg"></textarea>
-        <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700">Send Message</button>
+      <h3 class="text-3xl font-bold mb-6 text-center text-blue-700 dark:text-gray-100">Contact</h3>
+      <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-5 bg-white/90 rounded-2xl p-8 shadow-xl dark:bg-slate-700 dark:shadow-none">
+        <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400">
+        <input type="email" name="_replyto" placeholder="Your Email" required class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400">
+        <textarea name="message" rows="5" placeholder="Your Message" required class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400"></textarea>
+        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-sky-400 text-white p-3 rounded-lg font-semibold shadow-md hover:from-blue-700 hover:to-sky-500 transition dark:bg-gradient-to-r dark:from-slate-700 dark:via-slate-800 dark:to-slate-900 dark:text-gray-100 dark:shadow-none">Send Message</button>
       </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-white text-center py-6 text-sm text-gray-500">
-    © 2025 RN Properties. All rights reserved.
+  <footer class="bg-white/90 text-center py-6 text-base text-gray-500 shadow-inner mt-12 dark:bg-slate-800 dark:text-gray-300 dark:shadow-none">
+    &copy; 2025 RN Properties. All rights reserved.
   </footer>
 
 </body>
