@@ -98,15 +98,36 @@
   <section id="listings" class="py-16 max-w-6xl mx-auto px-4">
     <h3 class="text-3xl font-bold mb-10 text-blue-700 text-center dark:text-gray-100">Featured Properties</h3>
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <!-- Property Card -->
-      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card" data-title="3 Acre Land" data-location="Amritsar" data-price="Rs. 45,00,000" data-img="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+      <!-- Property Card Example -->
+      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card"
+        data-title="3 Acre Land"
+        data-location="Amritsar"
+        data-price="Rs. 45,00,000"
+        data-description="A spacious 3 acre land ideal for farming or investment. Located near the city with easy access to main roads."
+        data-tags='["Featured","New Listing"]'
+        data-features='["3 Acres","Clear Title","Road Access","Water Supply"]'
+        data-images='["https://aipl.com/wp-content/uploads/2023/07/dca-4.webp","https://images.unsplash.com/photo-1506744038136-46273834b3fb","https://images.unsplash.com/photo-1464983953574-0892a716854b"]'>
         <img src="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp" alt="3 Acre Land in Amritsar" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none">
+        <div class="flex flex-wrap gap-2 mb-2">
+          <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200">Featured</span>
+          <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded dark:bg-green-900 dark:text-green-200">New Listing</span>
+        </div>
         <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">3 Acre Land</h4>
         <p class="text-gray-500 text-base mb-2 dark:text-gray-400">Amritsar</p>
         <p class="text-blue-600 font-bold text-lg dark:text-gray-200">Rs. 45,00,000</p>
       </button>
-      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card" data-title="Old Colony Plot" data-location="Amritsar" data-price="Rs. 16,00,000" data-img="https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg">
+      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card"
+        data-title="Old Colony Plot"
+        data-location="Amritsar"
+        data-price="Rs. 16,00,000"
+        data-description="A well-located plot in the Old Colony, perfect for residential construction. Peaceful neighborhood with all amenities nearby."
+        data-tags='["Popular"]'
+        data-features='["500 sq yards","Gated Colony","Near Park"]'
+        data-images='["https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg","https://images.unsplash.com/photo-1507089947368-19c1da9775ae"]'>
         <img src="https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg" alt="Old Colony Plot in Amritsar" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none">
+        <div class="flex flex-wrap gap-2 mb-2">
+          <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded dark:bg-yellow-900 dark:text-yellow-200">Popular</span>
+        </div>
         <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">Old Colony Plot</h4>
         <p class="text-gray-500 text-base mb-2 dark:text-gray-400">Amritsar</p>
         <p class="text-blue-600 font-bold text-lg dark:text-gray-200">Rs. 16,00,000</p>
@@ -116,19 +137,31 @@
 
   <!-- Modal Overlay -->
   <div id="propertyModal" class="fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 hidden">
-    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col md:flex-row w-[90vw] max-w-3xl overflow-hidden relative">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col md:flex-row w-[95vw] max-w-3xl overflow-hidden relative">
       <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-2xl font-bold">&times;</button>
-      <img id="modalImg" src="" alt="Property Image" class="w-full md:w-1/2 h-64 md:h-auto object-cover">
+      <!-- Image Carousel -->
+      <div class="flex flex-col md:w-1/2 bg-black/10 dark:bg-slate-800">
+        <div class="relative flex items-center justify-center h-64 md:h-full">
+          <button id="prevImg" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+          <img id="modalImg" src="" alt="Property Image" class="rounded-xl w-full h-64 object-cover shadow-md dark:shadow-none select-none">
+          <button id="nextImg" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+        <div id="modalThumbnails" class="flex gap-2 justify-center mt-2 px-2 pb-2"></div>
+      </div>
+      <!-- Details -->
       <div class="p-8 flex flex-col justify-center w-full md:w-1/2">
+        <div id="modalTags" class="flex flex-wrap gap-2 mb-2"></div>
         <h4 id="modalTitle" class="text-2xl font-bold mb-2 text-blue-700 dark:text-gray-100"></h4>
         <p id="modalLocation" class="text-gray-600 mb-2 dark:text-gray-300"></p>
-        <p id="modalPrice" class="text-blue-600 font-bold text-lg dark:text-blue-300"></p>
+        <p id="modalPrice" class="text-blue-600 font-bold text-lg dark:text-blue-300 mb-2"></p>
+        <div id="modalFeatures" class="flex flex-wrap gap-2 mb-2"></div>
+        <p id="modalDescription" class="text-gray-700 dark:text-gray-200 mt-2"></p>
       </div>
     </div>
   </div>
 
   <script>
-    // Modal functionality
+    // Modal functionality with multiple images, tags, features, and description
     const propertyCards = document.querySelectorAll('.property-card');
     const modal = document.getElementById('propertyModal');
     const closeModal = document.getElementById('closeModal');
@@ -136,15 +169,82 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalLocation = document.getElementById('modalLocation');
     const modalPrice = document.getElementById('modalPrice');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalTags = document.getElementById('modalTags');
+    const modalFeatures = document.getElementById('modalFeatures');
+    const modalThumbnails = document.getElementById('modalThumbnails');
+    const prevImg = document.getElementById('prevImg');
+    const nextImg = document.getElementById('nextImg');
+    let currentImages = [];
+    let currentImgIdx = 0;
+
+    function updateModalImage(idx) {
+      if (currentImages.length === 0) return;
+      modalImg.src = currentImages[idx];
+      // Highlight thumbnail
+      Array.from(modalThumbnails.children).forEach((thumb, i) => {
+        thumb.classList.toggle('ring-2', i === idx);
+        thumb.classList.toggle('ring-blue-500', i === idx);
+      });
+    }
 
     propertyCards.forEach(card => {
       card.addEventListener('click', () => {
-        modalImg.src = card.getAttribute('data-img');
+        // Images
+        currentImages = JSON.parse(card.getAttribute('data-images'));
+        currentImgIdx = 0;
+        updateModalImage(currentImgIdx);
+        // Thumbnails
+        modalThumbnails.innerHTML = '';
+        currentImages.forEach((img, i) => {
+          const thumb = document.createElement('img');
+          thumb.src = img;
+          thumb.alt = 'Thumbnail';
+          thumb.className = 'w-12 h-12 rounded cursor-pointer object-cover border border-gray-200 dark:border-slate-700';
+          thumb.addEventListener('click', () => {
+            currentImgIdx = i;
+            updateModalImage(currentImgIdx);
+          });
+          modalThumbnails.appendChild(thumb);
+        });
+        // Title, Location, Price
         modalTitle.textContent = card.getAttribute('data-title');
         modalLocation.textContent = card.getAttribute('data-location');
         modalPrice.textContent = card.getAttribute('data-price');
+        // Description
+        modalDescription.textContent = card.getAttribute('data-description');
+        // Tags
+        modalTags.innerHTML = '';
+        JSON.parse(card.getAttribute('data-tags')).forEach(tag => {
+          const tagSpan = document.createElement('span');
+          tagSpan.className = 'bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200';
+          tagSpan.textContent = tag;
+          modalTags.appendChild(tagSpan);
+        });
+        // Features
+        modalFeatures.innerHTML = '';
+        JSON.parse(card.getAttribute('data-features')).forEach(feature => {
+          const featSpan = document.createElement('span');
+          featSpan.className = 'bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded dark:bg-slate-700 dark:text-gray-200';
+          featSpan.textContent = feature;
+          modalFeatures.appendChild(featSpan);
+        });
         modal.classList.remove('hidden');
       });
+    });
+    prevImg.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentImages.length > 0) {
+        currentImgIdx = (currentImgIdx - 1 + currentImages.length) % currentImages.length;
+        updateModalImage(currentImgIdx);
+      }
+    });
+    nextImg.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentImages.length > 0) {
+        currentImgIdx = (currentImgIdx + 1) % currentImages.length;
+        updateModalImage(currentImgIdx);
+      }
     });
     closeModal.addEventListener('click', () => {
       modal.classList.add('hidden');
@@ -154,6 +254,8 @@
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') modal.classList.add('hidden');
+      if (e.key === 'ArrowLeft') prevImg.click();
+      if (e.key === 'ArrowRight') nextImg.click();
     });
   </script>
 
