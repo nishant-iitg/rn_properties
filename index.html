@@ -143,55 +143,7 @@
   <!-- Property Listings -->
   <section id="listings" class="py-16 max-w-6xl mx-auto px-4">
     <h3 class="text-3xl font-bold mb-10 text-blue-700 text-center dark:text-gray-100">Featured Properties</h3>
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <!-- Property Card Example -->
-       
-      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card btn-animated"
-        data-title="3 Acre Land"
-        data-location="Amritsar"
-        data-price="Rs. 45,00,000"
-        data-description="A spacious 3 acre land ideal for farming or investment. Located near the city with easy access to main roads."
-        data-tags='["Featured","New Listing"]'
-        data-features='["3 Acres","Clear Title","Road Access","Water Supply"]'
-        data-images='["https://aipl.com/wp-content/uploads/2023/07/dca-4.webp","https://images.unsplash.com/photo-1507089947368-19c1da9775ae","https://images.unsplash.com/photo-1464983953574-0892a716854b"]'
-        data-link="https://rnproperties.com/property/3-acre-land">
-        <img src="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp" alt="3 Acre Land in Amritsar" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none">
-        <div class="flex flex-wrap gap-2 mb-2">
-          <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200 flex items-center gap-1">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Featured
-          </span>
-          <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded dark:bg-green-900 dark:text-green-200 flex items-center gap-1">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            New Listing
-          </span>
-        </div>
-        <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">3 Acre Land</h4>
-        <p class="text-gray-500 text-base mb-2 dark:text-gray-400">Amritsar</p>
-        <p class="text-blue-600 font-bold text-lg dark:text-gray-200">Rs. 45,00,000</p>
-      </button>
-      
-      <button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card btn-animated"
-        data-title="Old Colony Plot"
-        data-location="Amritsar"
-        data-price="Rs. 16,00,000"
-        data-description="A well-located plot in the Old Colony, perfect for residential construction. Peaceful neighborhood with all amenities nearby."
-        data-tags='["Popular"]'
-        data-features='["500 sq yards","Gated Colony","Near Park"]'
-        data-images='["https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg","https://images.unsplash.com/photo-1506744038136-46273834b3fb"]'
-        data-link="https://rnproperties.com/property/old-colony-plot">
-        <img src="https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg" alt="Old Colony Plot in Amritsar" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none">
-        <div class="flex flex-wrap gap-2 mb-2">
-          <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded dark:bg-yellow-900 dark:text-yellow-200 flex items-center gap-1">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Popular
-          </span>
-        </div>
-        <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">Old Colony Plot</h4>
-        <p class="text-gray-500 text-base mb-2 dark:text-gray-400">Amritsar</p>
-        <p class="text-blue-600 font-bold text-lg dark:text-gray-200">Rs. 16,00,000</p>
-      </button>
-    </div>
+    <div id="propertyGrid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
   </section>
 
   <!-- Testimonials Section -->
@@ -201,21 +153,21 @@
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <!-- Testimonial 1 -->
         <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center border border-gray-100 dark:border-slate-800">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client Photo" class="w-20 h-20 rounded-full mb-4 shadow-lg border-4 border-blue-100 dark:border-slate-800">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client Photo" class="w-20 h-20 rounded-full mb-4 shadow-lg border-4 border-blue-100 dark:border-slate-800" loading="lazy">
           <blockquote class="italic text-gray-700 dark:text-gray-200 mb-4">“RN Properties made buying our dream home seamless and stress-free. Their professionalism and attention to detail are unmatched.”</blockquote>
           <div class="font-semibold text-blue-700 dark:text-blue-300">Amit Sharma</div>
           <div class="text-xs text-gray-400 dark:text-gray-500">Amritsar</div>
         </div>
         <!-- Testimonial 2 -->
         <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center border border-gray-100 dark:border-slate-800">
-          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client Photo" class="w-20 h-20 rounded-full mb-4 shadow-lg border-4 border-blue-100 dark:border-slate-800">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client Photo" class="w-20 h-20 rounded-full mb-4 shadow-lg border-4 border-blue-100 dark:border-slate-800" loading="lazy">
           <blockquote class="italic text-gray-700 dark:text-gray-200 mb-4">“Excellent service and honest advice. I highly recommend RN Properties for anyone looking for property in Punjab.”</blockquote>
           <div class="font-semibold text-blue-700 dark:text-blue-300">Simran Kaur</div>
           <div class="text-xs text-gray-400 dark:text-gray-500">Jalandhar</div>
         </div>
         <!-- Testimonial 3 -->
         <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center border border-gray-100 dark:border-slate-800">
-          <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Client Photo" class="w-20 h-20 rounded-full mb-4 shadow-lg border-4 border-blue-100 dark:border-slate-800">
+          <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Client Photo" class="w-20 h-20 rounded-full mb-4 shadow-lg border-4 border-blue-100 dark:border-slate-800" loading="lazy">
           <blockquote class="italic text-gray-700 dark:text-gray-200 mb-4">“Very responsive team and transparent process. I felt confident and informed at every step!”</blockquote>
           <div class="font-semibold text-blue-700 dark:text-blue-300">Rajiv Malhotra</div>
           <div class="text-xs text-gray-400 dark:text-gray-500">Ludhiana</div>
@@ -226,13 +178,13 @@
         <div class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">Connect with us:</div>
         <div class="flex gap-6">
           <a href="https://wa.me/919876543210" target="_blank" rel="noopener" title="WhatsApp" class="hover:scale-110 transition-transform">
-            <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A12 12 0 003.48 20.52l-1.08 3.96 3.96-1.08A12 12 0 0020.52 3.48zm-8.52 17A10 10 0 1119 5a10 10 0 01-7 15.48zm5.66-7.09c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1.01 1.25-.18.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.59-.96-.85-1.6-1.89-1.79-2.21-.19-.32-.02-.49.14-.64.15-.15.32-.4.48-.6.16-.21.21-.37.32-.61.11-.24.05-.45-.03-.61-.08-.16-.71-1.71-.97-2.35-.26-.63-.53-.55-.73-.56-.19-.01-.41-.01-.63-.01-.22 0-.57.08-.87.37-.29.29-1.13 1.1-1.13 2.67s1.16 3.1 1.32 3.31c.16.21 2.27 3.47 5.51 4.72.77.27 1.37.43 1.84.55.77.2 1.47.17 2.02.1.62-.08 1.88-.77 2.15-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37z"/></svg>
+            <svg class="w-8 h-8 text-green-500" fill="none" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#25D366"/><path fill="#fff" d="M16 8.5A7.5 7.5 0 0 0 8.5 16c0 1.32.35 2.6 1 3.72l-1.07 3.9a.75.75 0 0 0 .92.92l3.9-1.07A7.5 7.5 0 1 0 16 8.5Zm0 13a5.5 5.5 0 0 1-2.8-.76l-.2-.12-2.3.62.62-2.3-.12-.2A5.5 5.5 0 1 1 16 21.5Zm3.11-4.07c-.17-.09-.98-.48-1.13-.54-.15-.06-.26-.09-.37.09-.11.17-.43.54-.53.65-.09.11-.2.12-.37.04-.17-.09-.71-.26-1.35-.83-.5-.45-.84-.99-.94-1.16-.09-.17-.01-.26.08-.34.08-.09.17-.22.26-.34.09-.11.12-.2.18-.34.06-.13.03-.25-.02-.34-.05-.09-.4-.98-.54-1.34-.14-.36-.29-.31-.4-.31-.11 0-.23 0-.36 0a.56.56 0 0 0-.4.16c-.11.11-.43.41-.43 1 0 .59.44 1.16.5 1.25.06.09.87 1.4 2.12 1.91.3.12.53.2.71.25.3.08.56.07.77.04.23-.03.72-.28.82-.56.1-.28.1-.52.07-.56-.03-.05-.12-.08-.25-.15Z"/></svg>
           </a>
           <a href="https://facebook.com/yourpage" target="_blank" rel="noopener" title="Facebook" class="hover:scale-110 transition-transform">
-            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.596 0 0 .592 0 1.326v21.348C0 23.408.596 24 1.325 24H12.82v-9.294H9.692v-3.622h3.127V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.312h3.587l-.467 3.622h-3.12V24h6.116C23.404 24 24 23.408 24 22.674V1.326C24 .592 23.404 0 22.675 0"/></svg>
+            <svg class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#1877F3"/><path d="M23 16.05A7 7 0 1 0 15.05 23v-4.93H13v-2.02h2.05v-1.54c0-2 1.2-3.13 3.04-3.13.88 0 1.8.16 1.8.16v1.98h-1.01c-.99 0-1.3.62-1.3 1.25v1.28h2.21l-.35 2.02h-1.86V23A7 7 0 0 0 23 16.05Z" fill="#fff"/></svg>
           </a>
           <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener" title="Instagram" class="hover:scale-110 transition-transform">
-            <svg class="w-8 h-8 text-pink-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.584.012 4.85.07 1.17.056 1.97.24 2.43.41.53.19.91.42 1.31.82.4.4.63.78.82 1.31.17.46.354 1.26.41 2.43.058 1.266.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.41 2.43-.19.53-.42.91-.82 1.31-.4.4-.78.63-1.31.82-.46.17-1.26.354-2.43.41-1.266.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.43-.41-.53-.19-.91-.42-1.31-.82-.4-.4-.63-.78-.82-1.31-.17-.46-.354-1.26-.41-2.43C2.212 15.784 2.2 15.4 2.2 12s.012-3.584.07-4.85c.056-1.17.24-1.97.41-2.43.19-.53.42-.91.82-1.31.4-.4.78-.63 1.31-.82.46-.17 1.26-.354 2.43-.41C8.416 2.212 8.8 2.2 12 2.2zm0-2.2C8.736 0 8.332.013 7.053.072 5.77.13 4.8.324 4.05.57c-.77.25-1.39.59-2.03 1.23C1.324 2.61.984 3.23.734 4c-.246.75-.44 1.72-.498 3.003C.013 8.332 0 8.736 0 12c0 3.264.013 3.668.072 4.947.058 1.283.252 2.253.498 3.003.25.77.59 1.39 1.23 2.03.64.64 1.26.98 2.03 1.23.75.246 1.72.44 3.003.498C8.332 23.987 8.736 24 12 24s3.668-.013 4.947-.072c1.283-.058 2.253-.252 3.003-.498.77-.25 1.39-.59 2.03-1.23.64-.64.98-1.26 1.23-2.03.246-.75.44-1.72.498-3.003.059-1.279.072-1.683.072-4.947s-.013-3.668-.072-4.947c-.058-1.283-.252-2.253-.498-3.003-.25-.77-.59-1.39-1.23-2.03-.64-.64-1.26-.98-2.03-1.23-.75-.246-1.72-.44-3.003-.498C15.668.013 15.264 0 12 0zm0 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+            <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="currentColor"/><circle cx="17" cy="7" r="1.5" fill="currentColor"/></svg>
           </a>
         </div>
       </div>
@@ -259,9 +211,9 @@
       <!-- Image Carousel -->
       <div class="flex flex-col md:w-1/2 bg-black/10 dark:bg-slate-800" id="modalImageCol">
         <div class="relative flex items-center justify-center h-64 md:h-full" id="modalImageWrapper">
-          <button id="prevImg" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10 btn-animated"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
-          <img id="modalImg" src="" alt="Property Image" class="rounded-xl w-full h-64 object-cover shadow-md dark:shadow-none select-none transition-all duration-300" style="max-height:100%; max-width:100%;">
-          <button id="nextImg" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10 btn-animated"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+          <button id="prevImg" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10 btn-animated"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+          <img id="modalImg" src="" alt="Property Image" class="rounded-xl w-full h-64 object-cover shadow-md dark:shadow-none select-none transition-all duration-300" style="max-height:100%; max-width:100%;" loading="lazy" width="600" height="300">
+          <button id="nextImg" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10 btn-animated"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
         </div>
         <div id="modalThumbnails" class="flex gap-2 justify-center mt-2 px-2 pb-2"></div>
       </div>
@@ -279,184 +231,170 @@
 
   <script>
     // Modal functionality with multiple images, tags, features, and description
-    const propertyCards = document.querySelectorAll('.property-card');
-    const modal = document.getElementById('propertyModal');
-    const closeModal = document.getElementById('closeModal');
-    const modalImg = document.getElementById('modalImg');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalLocation = document.getElementById('modalLocation');
-    const modalPrice = document.getElementById('modalPrice');
-    const modalDescription = document.getElementById('modalDescription');
-    const modalTags = document.getElementById('modalTags');
-    const modalFeatures = document.getElementById('modalFeatures');
-    const modalThumbnails = document.getElementById('modalThumbnails');
-    const prevImg = document.getElementById('prevImg');
-    const nextImg = document.getElementById('nextImg');
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
-    const fullscreenIcon = document.getElementById('fullscreenIcon');
-    const modalContent = document.getElementById('modalContent');
-    const shareBtn = document.getElementById('shareBtn');
-    let currentImages = [];
-    let currentImgIdx = 0;
-    let currentLink = '';
-    let isFullscreen = false;
-
-    function updateModalImage(idx) {
-      if (currentImages.length === 0) return;
-      modalImg.classList.add('fading');
-      setTimeout(() => {
-        modalImg.src = currentImages[idx];
-        modalImg.onload = () => modalImg.classList.remove('fading');
-      }, 120);
-      // Highlight thumbnail
-      Array.from(modalThumbnails.children).forEach((thumb, i) => {
-        thumb.classList.toggle('ring-2', i === idx);
-        thumb.classList.toggle('ring-blue-500', i === idx);
+    function bindModalEvents() {
+      const propertyCards = document.querySelectorAll('.property-card');
+      const modal = document.getElementById('propertyModal');
+      const closeModal = document.getElementById('closeModal');
+      const modalImg = document.getElementById('modalImg');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalLocation = document.getElementById('modalLocation');
+      const modalPrice = document.getElementById('modalPrice');
+      const modalDescription = document.getElementById('modalDescription');
+      const modalThumbnails = document.getElementById('modalThumbnails');
+      const prevImg = document.getElementById('prevImg');
+      const nextImg = document.getElementById('nextImg');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+      const modalContent = document.getElementById('modalContent');
+      const shareBtn = document.getElementById('shareBtn');
+      let currentImages = [];
+      let currentImgIdx = 0;
+      let currentLink = '';
+      let isFullscreen = false;
+      function updateModalImage(idx) {
+        if (currentImages.length === 0) return;
+        modalImg.classList.add('fading');
+        setTimeout(() => {
+          modalImg.src = currentImages[idx];
+          modalImg.onload = () => modalImg.classList.remove('fading');
+        }, 120);
+        // Highlight thumbnail
+        Array.from(modalThumbnails.children).forEach((thumb, i) => {
+          thumb.classList.toggle('ring-2', i === idx);
+          thumb.classList.toggle('ring-blue-500', i === idx);
+        });
+      }
+      propertyCards.forEach(card => {
+        card.addEventListener('click', () => {
+          modalTitle.textContent = card.getAttribute('data-title');
+          modalLocation.textContent = card.getAttribute('data-location');
+          modalPrice.textContent = card.getAttribute('data-price');
+          modalDescription.textContent = card.getAttribute('data-description');
+          currentImages = JSON.parse(card.getAttribute('data-images'));
+          currentImgIdx = 0;
+          currentLink = card.getAttribute('data-link');
+          // Render thumbnails
+          modalThumbnails.innerHTML = currentImages.map((img, i) => `<img src="${img}" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-blue-400 transition-all" style="object-fit:cover;" loading="lazy" width="56" height="56" data-idx="${i}">`).join('');
+          Array.from(modalThumbnails.children).forEach((thumb, i) => {
+            thumb.addEventListener('click', e => {
+              e.stopPropagation();
+              currentImgIdx = i;
+              updateModalImage(i);
+            });
+          });
+          updateModalImage(currentImgIdx);
+          modal.classList.remove('hidden');
+          setTimeout(() => modal.classList.add('show'), 10);
+        });
+      });
+      prevImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentImages.length > 0) {
+          currentImgIdx = (currentImgIdx - 1 + currentImages.length) % currentImages.length;
+          updateModalImage(currentImgIdx);
+        }
+      });
+      nextImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentImages.length > 0) {
+          currentImgIdx = (currentImgIdx + 1) % currentImages.length;
+          updateModalImage(currentImgIdx);
+        }
+      });
+      closeModal.addEventListener('click', () => {
+        modal.classList.remove('show');
+        setTimeout(() => modal.classList.add('hidden'), 350);
+      });
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('show');
+          setTimeout(() => modal.classList.add('hidden'), 350);
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          modal.classList.remove('show');
+          setTimeout(() => modal.classList.add('hidden'), 350);
+        }
+        if (e.key === 'ArrowLeft') prevImg.click();
+        if (e.key === 'ArrowRight') nextImg.click();
+      });
+      fullscreenBtn.addEventListener('click', () => {
+        isFullscreen = !isFullscreen;
+        if(isFullscreen) {
+          modalContent.classList.add('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
+        } else {
+          modalContent.classList.remove('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
+        }
+      });
+      shareBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Share menu logic (WhatsApp, Email, Copy Link)
+        const menu = document.createElement('div');
+        menu.id = 'shareMenuBg';
+        menu.className = 'fixed inset-0 z-[9999] flex items-center justify-center bg-black/40';
+        menu.innerHTML = `
+          <div class='bg-white dark:bg-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-4 min-w-[240px] pointer-events-auto'>
+            <div class='font-bold text-lg mb-1 text-blue-700 dark:text-blue-200'>Share Property</div>
+            <a href='https://wa.me/?text='+encodeURIComponent(currentLink) class='flex items-center gap-2 text-green-600 hover:text-green-700 font-medium' target='_blank'><svg class='w-5 h-5' fill='none' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='#25D366'/><path fill='#fff' d='M16 8.5A7.5 7.5 0 0 0 8.5 16c0 1.32.35 2.6 1 3.72l-1.07 3.9a.75.75 0 0 0 .92.92l3.9-1.07A7.5 7.5 0 1 0 16 8.5Zm0 13a5.5 5.5 0 0 1-2.8-.76l-.2-.12-2.3.62.62-2.3-.12-.2A5.5 5.5 0 1 1 16 21.5Zm3.11-4.07c-.17-.09-.98-.48-1.13-.54-.15-.06-.26-.09-.37.09-.11.17-.43.54-.53.65-.09.11-.2.12-.37.04-.17-.09-.71-.26-1.35-.83-.5-.45-.84-.99-.94-1.16-.09-.17-.01-.26.08-.34.08-.09.17-.22.26-.34.09-.11.12-.2.18-.34.06-.13.03-.25-.02-.34-.05-.09-.4-.98-.54-1.34-.14-.36-.29-.31-.4-.31-.11 0-.23 0-.36 0a.56.56 0 0 0-.4.16c-.11.11-.43.41-.43 1 0 .59.44 1.16.5 1.25.06.09.87 1.4 2.12 1.91.3.12.53.2.71.25.3.08.56.07.77.04.23-.03.72-.28.82-.56.1-.28.1-.52.07-.56-.03-.05-.12-.08-.25-.15Z'/></svg> WhatsApp</a>
+            <a href='mailto:?subject=Check%20out%20this%20property&body='+encodeURIComponent(currentLink) class='flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='14' rx='2' stroke='currentColor' stroke-width='2'/><path d='M3 7l9 6 9-6' stroke='currentColor' stroke-width='2'/></svg> Email</a>
+            <button id='copyLinkBtn' class='flex items-center gap-2 text-gray-600 hover:text-blue-600 font-medium'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='9' y='9' width='13' height='13' rx='2' stroke='currentColor' stroke-width='2'/><rect x='3' y='3' width='13' height='13' rx='2' stroke='currentColor' stroke-width='2'/></svg> Copy Link</button>
+            <button id='closeShareMenu' class='mt-2 text-sm text-gray-400 hover:text-gray-600'>Cancel</button>
+          </div>
+        `;
+        document.body.appendChild(menu);
+        const shareUrl = currentLink;
+        document.getElementById('copyLinkBtn').onclick = () => {
+          navigator.clipboard.writeText(shareUrl);
+          document.getElementById('copyLinkBtn').textContent = 'Copied!';
+          setTimeout(() => document.getElementById('copyLinkBtn').textContent = 'Copy Link', 1500);
+        };
+        document.getElementById('closeShareMenu').onclick = () => menu.remove();
+        menu.onclick = (e) => { if(e.target.id === 'shareMenuBg') menu.remove(); };
       });
     }
-
-    propertyCards.forEach(card => {
-      card.addEventListener('click', () => {
-        // Images
-        currentImages = JSON.parse(card.getAttribute('data-images'));
-        currentImgIdx = 0;
-        updateModalImage(currentImgIdx);
-        // Thumbnails
-        modalThumbnails.innerHTML = '';
-        currentImages.forEach((img, i) => {
-          const thumb = document.createElement('img');
-          thumb.src = img;
-          thumb.alt = 'Thumbnail';
-          thumb.className = 'w-12 h-12 rounded cursor-pointer object-cover border border-gray-200 dark:border-slate-700 transition';
-          thumb.addEventListener('click', () => {
-            currentImgIdx = i;
-            updateModalImage(currentImgIdx);
-          });
-          modalThumbnails.appendChild(thumb);
-        });
-        // Title, Location, Price
-        modalTitle.textContent = card.getAttribute('data-title');
-        modalLocation.textContent = card.getAttribute('data-location');
-        modalPrice.textContent = card.getAttribute('data-price');
-        // Description
-        modalDescription.textContent = card.getAttribute('data-description');
-        // Tags
-        modalTags.innerHTML = '';
-        JSON.parse(card.getAttribute('data-tags')).forEach(tag => {
-          const tagSpan = document.createElement('span');
-          tagSpan.className = 'bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200 flex items-center gap-1';
-          // Custom icon for tags
-          let icon = '';
-          if(tag === 'Featured') icon = `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"#2563eb\"/><path d=\"M8 12l2.5 2.5L16 9\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>`;
-          if(tag === 'New Listing') icon = `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"#22c55e\"/><path d=\"M8 12l2.5 2.5L16 9\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>`;
-          if(tag === 'Popular') icon = `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"#eab308\"/><path d=\"M8 12l2.5 2.5L16 9\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>`;
-          tagSpan.innerHTML = icon + tag;
-          modalTags.appendChild(tagSpan);
-        });
-        // Features
-        modalFeatures.innerHTML = '';
-        JSON.parse(card.getAttribute('data-features')).forEach(feature => {
-          const featSpan = document.createElement('span');
-          featSpan.className = 'bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded dark:bg-slate-700 dark:text-gray-200 flex items-center gap-1';
-          // SVG icon for feature
-          featSpan.innerHTML = `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"#2563eb\" stroke-width=\"2\" fill=\"none\"/><path d=\"M8 12l2.5 2.5L16 9\" stroke=\"#2563eb\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg> ` + feature;
-          modalFeatures.appendChild(featSpan);
-        });
-        // Property link for share
-        currentLink = card.getAttribute('data-link') || window.location.href;
-        modal.classList.add('show');
-        modal.classList.remove('hidden');
-      });
-    });
-    // Fullscreen toggle logic
-    fullscreenBtn.addEventListener('click', () => {
-      isFullscreen = !isFullscreen;
-      if(isFullscreen) {
-        modalContent.classList.add('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
-        modalContent.style.maxWidth = '100vw';
-        document.getElementById('modalImageCol').classList.remove('md:w-1/2');
-        document.getElementById('modalImageCol').classList.add('w-full','h-full','flex-row');
-        document.getElementById('modalImageWrapper').classList.remove('h-64','md:h-full');
-        document.getElementById('modalImageWrapper').classList.add('h-full');
-        modalImg.classList.remove('h-64');
-        modalImg.classList.add('h-full','object-contain');
-        modalImg.style.maxHeight = '100vh';
-        modalImg.style.maxWidth = '100vw';
-      } else {
-        modalContent.classList.remove('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
-        modalContent.style.maxWidth = '';
-        document.getElementById('modalImageCol').classList.remove('w-full','h-full','flex-row');
-        document.getElementById('modalImageCol').classList.add('md:w-1/2');
-        document.getElementById('modalImageWrapper').classList.remove('h-full');
-        document.getElementById('modalImageWrapper').classList.add('h-64','md:h-full');
-        modalImg.classList.remove('h-full','object-contain');
-        modalImg.classList.add('h-64');
-        modalImg.style.maxHeight = '';
-        modalImg.style.maxWidth = '';
-      }
-    });
-    // Share button logic
-    shareBtn.addEventListener('click', () => {
-      const shareUrl = currentLink;
-      const shareText = encodeURIComponent('Check out this property on RN Properties!');
-      const whatsapp = `https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`;
-      const mailto = `mailto:?subject=Property%20from%20RN%20Properties&body=${shareText}%20${encodeURIComponent(shareUrl)}`;
-      // Show a simple share menu (prompt)
-      const menu = document.createElement('div');
-      menu.innerHTML = `
-        <div class='fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center' id='shareMenuBg'>
-          <div class='bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl flex flex-col gap-4 min-w-[260px]'>
-            <button class='btn-animated flex items-center gap-2' id='copyLinkBtn'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='9' y='9' width='13' height='13' rx='2' ry='2' stroke='currentColor' stroke-width='2' fill='none'/><path d='M5 15V5a2 2 0 012-2h10a2 2 0 012 2v10' stroke-linecap='round' stroke-linejoin='round'/></svg>Copy Link</button>
-            <a href='${whatsapp}' target='_blank' class='btn-animated flex items-center gap-2'><svg class='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'><path d='M20.52 3.48A12 12 0 003.48 20.52l-1.08 3.96 3.96-1.08A12 12 0 0020.52 3.48zm-8.52 17A10 10 0 1119 5a10 10 0 01-7 15.48zm5.66-7.09c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1.01 1.25-.18.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.59-.96-.85-1.6-1.89-1.79-2.21-.19-.32-.02-.49.14-.64.15-.15.32-.4.48-.6.16-.21.21-.37.32-.61.11-.24.05-.45-.03-.61-.08-.16-.71-1.71-.97-2.35-.26-.63-.53-.55-.73-.56-.19-.01-.41-.01-.63-.01-.22 0-.57.08-.87.37-.29.29-1.13 1.1-1.13 2.67s1.16 3.1 1.32 3.31c.16.21 2.27 3.47 5.51 4.72.77.27 1.37.43 1.84.55.77.2 1.47.17 2.02.1.62-.08 1.88-.77 2.15-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37z'/></svg>Share on WhatsApp</a>
-            <a href='${mailto}' class='btn-animated flex items-center gap-2'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path d='M4 4h16v16H4z' stroke-linecap='round' stroke-linejoin='round'/><path d='M22 6l-10 7L2 6' stroke-linecap='round' stroke-linejoin='round'/></svg>Share via Email</a>
-            <button class='btn-animated mt-2' id='closeShareMenu'>Close</button>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(menu);
-      // Copy link
-      document.getElementById('copyLinkBtn').onclick = () => {
-        navigator.clipboard.writeText(shareUrl);
-        document.getElementById('copyLinkBtn').textContent = 'Copied!';
-        setTimeout(() => document.getElementById('copyLinkBtn').textContent = 'Copy Link', 1500);
-      };
-      // Close menu
-      document.getElementById('closeShareMenu').onclick = () => menu.remove();
-      document.getElementById('shareMenuBg').onclick = (e) => { if(e.target.id === 'shareMenuBg') menu.remove(); };
-    });
-    prevImg.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (currentImages.length > 0) {
-        currentImgIdx = (currentImgIdx - 1 + currentImages.length) % currentImages.length;
-        updateModalImage(currentImgIdx);
-      }
-    });
-    nextImg.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (currentImages.length > 0) {
-        currentImgIdx = (currentImgIdx + 1) % currentImages.length;
-        updateModalImage(currentImgIdx);
-      }
-    });
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('show');
-      setTimeout(() => modal.classList.add('hidden'), 350);
-    });
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('show');
-        setTimeout(() => modal.classList.add('hidden'), 350);
-      }
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        modal.classList.remove('show');
-        setTimeout(() => modal.classList.add('hidden'), 350);
-      }
-      if (e.key === 'ArrowLeft') prevImg.click();
-      if (e.key === 'ArrowRight') nextImg.click();
+    // Render property cards dynamically from properties.js
+    function createPropertyCard(property) {
+      // Tags HTML
+      const tags = property.tags.map(tag => {
+        let tagColor = 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200';
+        if (tag === 'New Listing') tagColor = 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200';
+        if (tag === 'Popular') tagColor = 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200';
+        return `<span class="${tagColor} text-xs px-2 py-1 rounded flex items-center gap-1">
+          <svg class='w-4 h-4' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 12l2.5 2.5L16 9' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>
+          ${tag}
+        </span>`;
+      }).join('');
+      // Features HTML
+      const features = property.features.map(f => `<span class='bg-gray-100 text-gray-600 dark:bg-slate-800 dark:text-gray-300 px-2 py-1 rounded text-xs flex items-center gap-1'><svg class='w-3 h-3 text-blue-400' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' stroke='currentColor' stroke-width='2'/><circle cx='12' cy='12' r='4' stroke='currentColor' stroke-width='2'/></svg>${f}</span>`).join(' ');
+      // Main Image
+      const mainImg = property.images[0];
+      return `<button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card btn-animated"
+        data-title="${property.title}"
+        data-location="${property.location}"
+        data-price="${property.price}"
+        data-description="${property.description}"
+        data-tags='${JSON.stringify(property.tags)}'
+        data-features='${JSON.stringify(property.features)}'
+        data-images='${JSON.stringify(property.images)}'
+        data-link="${property.link}">
+        <img src="${mainImg}" alt="${property.title} in ${property.location}" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none" loading="lazy" width="600" height="200">
+        <div class="flex flex-wrap gap-2 mb-2">${tags}</div>
+        <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">${property.title}</h4>
+        <p class="text-gray-500 text-base mb-2 dark:text-gray-400">${property.location}</p>
+        <p class="text-blue-600 font-bold text-lg dark:text-gray-200">${property.price}</p>
+      </button>`;
+    }
+    function renderProperties() {
+      const grid = document.getElementById('propertyGrid');
+      grid.innerHTML = properties.map(createPropertyCard).join('');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProperties();
+      setTimeout(bindModalEvents, 0);
     });
   </script>
+
+  <script src="properties.js"></script>
 
   <!-- About Section -->
   <section id="about" class="bg-white/80 backdrop-blur-lg py-16 px-4 dark:bg-slate-800 dark:backdrop-blur-lg">
@@ -483,6 +421,15 @@
   <footer class="bg-white/90 text-center py-6 text-base text-gray-500 shadow-inner mt-12 dark:bg-slate-800 dark:text-gray-300 dark:shadow-none">
     &copy; 2025 RN Properties. All rights reserved.
   </footer>
+
+  <script>
+    // Lazy load testimonial images
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('section img').forEach(function(img) {
+        img.setAttribute('loading', 'lazy');
+      });
+    });
+  </script>
 
 </body>
 </html>
