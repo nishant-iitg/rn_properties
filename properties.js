@@ -13,7 +13,8 @@ const properties = [
       "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=600&q=60&auto=compress",
       "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=600&q=60&auto=compress"
     ],
-    link: "https://rnproperties.com/property/3-acre-land"
+    link: "https://rnproperties.com/property/3-acre-land",
+    map: "https://www.google.com/maps?q=31.6340,74.8723"
   },
   {
     title: "Old Colony Plot",
@@ -26,7 +27,8 @@ const properties = [
       "https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg?w=600&q=60&auto=compress",
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=60&auto=compress"
     ],
-    link: "https://rnproperties.com/property/old-colony-plot"
+    link: "https://rnproperties.com/property/old-colony-plot",
+    map: "https://www.google.com/maps?q=31.6335,74.8720"
   },
   {
     title: "Old Colony Plot",
@@ -39,7 +41,8 @@ const properties = [
       "https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg?w=600&q=60&auto=compress",
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=60&auto=compress"
     ],
-    link: "https://rnproperties.com/property/old-colony-plot"
+    link: "https://rnproperties.com/property/old-colony-plot",
+    map: "https://www.google.com/maps?q=31.6335,74.8720"
   },
   {
     title: "Old Colony Plot",
@@ -52,6 +55,7 @@ const properties = [
       "https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg?w=600&q=60&auto=compress",
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=60&auto=compress"
     ],
-    link: "https://rnproperties.com/property/old-colony-plot"
+    link: "https://rnproperties.com/property/old-colony-plot",
+    map: "https://www.google.com/maps?q=31.6335,74.8720"
   }
 ];
