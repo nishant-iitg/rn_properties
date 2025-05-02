@@ -29,33 +29,5 @@ const properties = [
     ],
     link: "https://rnproperties.com/property/old-colony-plot",
     map: "https://www.google.com/maps?q=31.6335,74.8720"
-  },
-  {
-    title: "Old Colony Plot",
-    location: "Amritsar",
-    price: "Rs. 16,00,000",
-    description: "A well-located plot in the Old Colony, perfect for residential construction. Peaceful neighborhood with all amenities nearby.",
-    tags: ["Popular"],
-    features: ["500 sq yards", "Gated Colony", "Near Park"],
-    images: [
-      "https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg?w=600&q=60&auto=compress",
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=60&auto=compress"
-    ],
-    link: "https://rnproperties.com/property/old-colony-plot",
-    map: "https://www.google.com/maps?q=31.6335,74.8720"
-  },
-  {
-    title: "Old Colony Plot",
-    location: "Amritsar",
-    price: "Rs. 16,00,000",
-    description: "A well-located plot in the Old Colony, perfect for residential construction. Peaceful neighborhood with all amenities nearby.",
-    tags: ["Popular"],
-    features: ["500 sq yards", "Gated Colony", "Near Park"],
-    images: [
-      "https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg?w=600&q=60&auto=compress",
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=60&auto=compress"
-    ],
-    link: "https://rnproperties.com/property/old-colony-plot",
-    map: "https://www.google.com/maps?q=31.6335,74.8720"
   }
 ];
