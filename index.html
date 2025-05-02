@@ -182,6 +182,33 @@
       border-color: #2563eb;
       box-shadow: 0 0 0 4px #2563eb33, 0 0 18px 4px #38bdf866;
     }
+    /* Fullscreen Image */
+    .modal-image-fullscreen {
+      width: 100% !important;
+      height: 80vh !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 0 !important;
+      background: #000;
+      box-shadow: none;
+      z-index: 9999;
+      position: relative;
+      margin: 0 auto;
+      display: block;
+      transition: all 0.3s;
+    }
+    /* Ensure nav buttons are above fullscreen image */
+    #modalImageWrapper {
+      position: relative;
+    }
+    #modalImageWrapper button {
+      z-index: 10001;
+      position: absolute;
+    }
+    #modalImageWrapper .modal-image-fullscreen {
+      z-index: 9999;
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen text-gray-800 dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-gray-100">
@@ -308,17 +335,17 @@
 
   <!-- Modal Overlay -->
   <div id="propertyModal" class="fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 hidden">
-    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col md:flex-row w-[95vw] max-w-3xl overflow-hidden relative modal-content" id="modalContent">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-5xl min-h-[60vh] max-h-[90vh] overflow-auto relative modal-content" id="modalContent">
       <!-- Modal Top Bar for Controls -->
       <div class="absolute top-0 left-0 w-full flex justify-between items-center z-30 px-4 pt-3 md:pt-4 pointer-events-none">
         <div class="flex gap-2">
-          <button id="fullscreenBtn" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto" title="Toggle Full Screen" aria-label="Toggle Full Screen" style="backdrop-filter: blur(4px);">
-            <svg id="fullscreenIcon" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+          <button id="fullscreenBtn" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-2xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-3 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto" title="Toggle Full Screen" aria-label="Toggle Full Screen" style="backdrop-filter: blur(4px);">
+            <svg id="fullscreenIcon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <div class="flex gap-2">
           <button id="shareBtn" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto" title="Share Property" aria-label="Share Property" style="backdrop-filter: blur(4px);">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <button id="closeModal" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-2xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto ml-1" title="Close" aria-label="Close" style="backdrop-filter: blur(4px);">&times;</button>
         </div>
@@ -326,9 +353,15 @@
       <!-- Image Carousel -->
       <div class="flex flex-col md:w-1/2 bg-black/10 dark:bg-slate-800" id="modalImageCol">
         <div class="relative flex items-center justify-center h-64 md:h-full" id="modalImageWrapper">
-          <button id="prevImg" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10 btn-animated"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+          <button id="prevImg" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-3 rounded-full shadow hover:bg-blue-200 dark:hover:bg-blue-800 z-10 btn-animated text-2xl flex items-center justify-center" title="Previous Image" aria-label="Previous Image">
+            <span class="sr-only">Previous</span>
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
           <img id="modalImg" src="" alt="Property Image" class="rounded-xl w-full h-64 object-cover shadow-md dark:shadow-none select-none transition-all duration-300" style="max-height:100%; max-width:100%;" loading="lazy" width="600" height="300">
-          <button id="nextImg" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-2 rounded-full shadow hover:bg-blue-100 dark:hover:bg-blue-800 z-10 btn-animated"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+          <button id="nextImg" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-3 rounded-full shadow hover:bg-blue-200 dark:hover:bg-blue-800 z-10 btn-animated text-2xl flex items-center justify-center" title="Next Image" aria-label="Next Image">
+            <span class="sr-only">Next</span>
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
         </div>
         <div id="modalThumbnails" class="flex gap-2 justify-center mt-2 px-2 pb-2"></div>
       </div>
@@ -451,8 +484,10 @@
         isFullscreen = !isFullscreen;
         if(isFullscreen) {
           modalContent.classList.add('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
+          modalImg.classList.add('modal-image-fullscreen');
         } else {
           modalContent.classList.remove('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
+          modalImg.classList.remove('modal-image-fullscreen');
         }
       });
       shareBtn.addEventListener('click', (e) => {
@@ -557,6 +592,26 @@
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('section img').forEach(function(img) {
         img.setAttribute('loading', 'lazy');
+      });
+    });
+  </script>
+
+  <script>
+    // Fullscreen image fix
+    document.addEventListener('DOMContentLoaded', function() {
+      const modalContent = document.getElementById('modalContent');
+      const modalImg = document.getElementById('modalImg');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+      let isFullscreen = false;
+      fullscreenBtn.addEventListener('click', function() {
+        isFullscreen = !isFullscreen;
+        if (isFullscreen) {
+          modalContent.classList.add('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
+          modalImg.classList.add('modal-image-fullscreen');
+        } else {
+          modalContent.classList.remove('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
+          modalImg.classList.remove('modal-image-fullscreen');
+        }
       });
     });
   </script>
