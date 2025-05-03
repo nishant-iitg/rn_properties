@@ -262,6 +262,63 @@
     #modalImageWrapper .modal-image-fullscreen {
       z-index: 9999;
     }
+    /* Chat Widget Button */
+    #chatWidgetBtn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    #chatWidgetBtn:hover {
+      background: #1741a6;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    }
+    #chatWidgetPopup {
+      position: fixed;
+      bottom: 92px;
+      right: 36px;
+      z-index: 10000;
+      background: #fff;
+      color: #222;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.16);
+      padding: 22px 24px 18px 24px;
+      min-width: 270px;
+      display: none;
+      font-size: 1rem;
+      font-family: inherit;
+      animation: fadeInUp 0.2s;
+    }
+    #chatWidgetPopup .closeBtn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #888;
+      cursor: pointer;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 600px) {
+      #chatWidgetBtn { right: 14px; bottom: 14px; }
+      #chatWidgetPopup { right: 10px; bottom: 74px; min-width: 210px; }
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen text-gray-800 dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-gray-100">
@@ -699,6 +756,50 @@
       const match = hash.match(/^#\/property\/(\d+)/);
       if (match) {
         openPropertyById(match[1]);
+      }
+    });
+  </script>
+
+  <!-- Chat Widget Button and Popup -->
+  <button id="chatWidgetBtn" title="Contact Us">
+    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4ac.png" alt="Chat Icon" width="36" height="36" style="display:block;" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/8/8c/Chat-bubble-icon.png';" />
+  </button>
+  <div id="chatWidgetPopup">
+    <button class="closeBtn" aria-label="Close">&times;</button>
+    <div style="padding-top: 8px; padding-bottom: 2px;">
+      <strong>Contact Us</strong><br>
+      <span>+91-9876543210</span><br>
+      <span style="font-size: 0.98em; color: #2563eb;">Both Call and Whatsapp</span>
+    </div>
+  </div>
+  <script>
+    const chatBtn = document.getElementById('chatWidgetBtn');
+    const chatPopup = document.getElementById('chatWidgetPopup');
+    const chatClose = chatPopup.querySelector('.closeBtn');
+    let chatPopupVisible = false;
+    // Only toggle on direct button click
+    chatBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      chatPopupVisible = !chatPopupVisible;
+      chatPopup.style.display = chatPopupVisible ? 'block' : 'none';
+    });
+    chatClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      chatPopupVisible = false;
+      chatPopup.style.display = 'none';
+    });
+    // Hide popup if clicked outside (but not on the button)
+    document.addEventListener('click', (e) => {
+      if (chatPopupVisible && !chatPopup.contains(e.target) && e.target !== chatBtn && !chatBtn.contains(e.target)) {
+        chatPopupVisible = false;
+        chatPopup.style.display = 'none';
+      }
+    });
+    // Optional: Hide on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (chatPopupVisible && (e.key === 'Escape' || e.key === 'Esc')) {
+        chatPopupVisible = false;
+        chatPopup.style.display = 'none';
       }
     });
   </script>
