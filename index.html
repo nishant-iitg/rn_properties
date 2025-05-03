@@ -7,6 +7,20 @@
   <meta name="description" content="Browse property listings in Amritsar with RN Properties. Find land, plots, and real estate for sale with detailed information, photos, and contact options.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://rnproperties.com/">
+  <meta name="keywords" content="property listings, land for sale, plots for sale, real estate, Amritsar, Punjab, India">
+  <meta name="author" content="RN Properties">
+  <meta name="application-name" content="RN Properties">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="msapplication-TileImage" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+  <meta name="msapplication-square70x70logo" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+  <meta name="msapplication-square150x150logo" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+  <meta name="msapplication-square310x310logo" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+  <meta name="msapplication-square144x144logo" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+  <meta name="msapplication-square310x310logo" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+  <meta name="msapplication-square144x144logo" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+  <meta name="msapplication-square310x310logo" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
+  <meta name="msapplication-square144x144logo" content="https://aipl.com/wp-content/uploads/2023/07/dca-4.webp">
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="RN Properties | Property Listings in Amritsar">
   <meta property="og:description" content="Browse property listings in Amritsar with RN Properties. Find land, plots, and real estate for sale with detailed information, photos, and contact options.">
@@ -440,6 +454,7 @@
       let currentImgIdx = 0;
       let currentLink = '';
       let isFullscreen = false;
+      let currentPropertyId = null;
       function updateModalImage(idx) {
         if (currentImages.length === 0) return;
         modalImg.classList.add('fading');
@@ -455,6 +470,8 @@
       }
       propertyCards.forEach(card => {
         card.addEventListener('click', () => {
+          currentPropertyId = card.getAttribute('data-id');
+          window.location.hash = `#/property/${currentPropertyId}`;
           modalTitle.textContent = card.getAttribute('data-title');
           modalLocation.textContent = card.getAttribute('data-location');
           modalPrice.textContent = card.getAttribute('data-price');
@@ -504,17 +521,27 @@
       closeModal.addEventListener('click', () => {
         modal.classList.remove('show');
         setTimeout(() => modal.classList.add('hidden'), 350);
+        // Remove property hash from URL
+        if (window.location.hash.startsWith('#/property/')) {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
       });
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
           modal.classList.remove('show');
           setTimeout(() => modal.classList.add('hidden'), 350);
+          if (window.location.hash.startsWith('#/property/')) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          }
         }
       });
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           modal.classList.remove('show');
           setTimeout(() => modal.classList.add('hidden'), 350);
+          if (window.location.hash.startsWith('#/property/')) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          }
         }
         if (e.key === 'ArrowLeft') prevImg.click();
         if (e.key === 'ArrowRight') nextImg.click();
@@ -537,22 +564,20 @@
         menu.className = 'fixed inset-0 z-[9999] flex items-center justify-center bg-black/40';
         menu.innerHTML = `
           <div class='bg-white dark:bg-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-4 min-w-[240px] pointer-events-auto'>
-            <div class='font-bold text-lg mb-1 text-blue-700 dark:text-blue-200'>Share Property</div>
-            <a href='https://wa.me/?text='+encodeURIComponent(currentLink) class='flex items-center gap-2 text-green-600 hover:text-green-700 font-medium' target='_blank'><svg class='w-5 h-5' fill='none' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='#25D366'/><path fill='#fff' d='M16 8.5A7.5 7.5 0 0 0 8.5 16c0 1.32.35 2.6 1 3.72l-1.07 3.9a.75.75 0 0 0 .92.92l3.9-1.07A7.5 7.5 0 1 0 16 8.5Zm0 13a5.5 5.5 0 0 1-2.8-.76l-.2-.12-2.3.62.62-2.3-.12-.2A5.5 5.5 0 1 1 16 21.5Zm3.11-4.07c-.17-.09-.98-.48-1.13-.54-.15-.06-.26-.09-.37.09-.11.17-.43.54-.53.65-.09.11-.2.12-.37.04-.17-.09-.71-.26-1.35-.83-.5-.45-.84-.99-.94-1.16-.09-.17-.01-.26.08-.34.08-.09.17-.22.26-.34.09-.11.12-.2.18-.34.06-.13.03-.25-.02-.34-.05-.09-.4-.98-.54-1.34-.14-.36-.29-.31-.4-.31-.11 0-.23 0-.36 0a.56.56 0 0 0-.4.16c-.11.11-.43.41-.43 1 0 .59.44 1.16.5 1.25.06.09.87 1.4 2.12 1.91.3.12.53.2.71.25.3.08.56.07.77.04.23-.03.72-.28.82-.56.1-.28.1-.52.07-.56-.03-.05-.12-.08-.25-.15Z'/></svg> WhatsApp</a>
-            <a href='mailto:?subject=Check%20out%20this%20property&body='+encodeURIComponent(currentLink) class='flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='14' rx='2' stroke='currentColor' stroke-width='2'/><path d='M3 7l9 6 9-6' stroke='currentColor' stroke-width='2'/></svg> Email</a>
-            <button id='copyLinkBtn' class='flex items-center gap-2 text-gray-600 hover:text-blue-600 font-medium'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='9' y='9' width='13' height='13' rx='2' stroke='currentColor' stroke-width='2'/><rect x='3' y='3' width='13' height='13' rx='2' stroke='currentColor' stroke-width='2'/></svg> Copy Link</button>
-            <button id='closeShareMenu' class='mt-2 text-sm text-gray-400 hover:text-gray-600'>Cancel</button>
-          </div>
-        `;
+            <div class='font-bold text-lg mb-2'>Share Property</div>
+            <a href='https://wa.me/?text=${encodeURIComponent(currentLink)}' target='_blank' class='btn-animated bg-green-500 text-white rounded-lg p-2 flex items-center gap-2'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path d='M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.472-.148-.67.15-.197.297-.767.967-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.209-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.076 4.366.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z'/></svg>WhatsApp</a>
+            <a href='mailto:?subject=Property%20Listing&body=${encodeURIComponent(currentLink)}' class='btn-animated bg-blue-500 text-white rounded-lg p-2 flex items-center gap-2'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path d='M4 4h16v16H4z' stroke='currentColor' stroke-width='2' fill='none'/><path d='M22,6 L12,13 L2,6' stroke='currentColor' stroke-width='2' fill='none'/></svg>Email</a>
+            <button id='copyLinkBtn' class='btn-animated bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg p-2 flex items-center gap-2'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='9' y='9' width='13' height='13' rx='2' ry='2' stroke='currentColor' stroke-width='2' fill='none'/><path d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/></svg>Copy Link</button>
+            <button id='closeShareMenu' class='btn-animated bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg p-2 mt-2'>Close</button>
+          </div>`;
         document.body.appendChild(menu);
-        const shareUrl = currentLink;
+        menu.onclick = (e) => { if(e.target.id === 'shareMenuBg') menu.remove(); };
+        document.getElementById('closeShareMenu').onclick = () => menu.remove();
         document.getElementById('copyLinkBtn').onclick = () => {
-          navigator.clipboard.writeText(shareUrl);
+          navigator.clipboard.writeText(currentLink);
           document.getElementById('copyLinkBtn').textContent = 'Copied!';
           setTimeout(() => document.getElementById('copyLinkBtn').textContent = 'Copy Link', 1500);
         };
-        document.getElementById('closeShareMenu').onclick = () => menu.remove();
-        menu.onclick = (e) => { if(e.target.id === 'shareMenuBg') menu.remove(); };
       });
     }
     // Render property cards dynamically from properties.js
@@ -562,31 +587,29 @@
         let tagColor = 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200';
         if (tag === 'New Listing') tagColor = 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200';
         if (tag === 'Popular') tagColor = 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200';
-        return `<span class="${tagColor} text-xs px-2 py-1 rounded flex items-center gap-1">
-          <svg class='w-4 h-4' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 12l2.5 2.5L16 9' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>
-          ${tag}
-        </span>`;
+        return `<span class="${tagColor} text-xs px-2 py-1 rounded flex items-center gap-1">${tag}</span>`;
       }).join('');
-      // Features HTML
-      const features = property.features.map(f => `<span class='bg-gray-100 text-gray-600 dark:bg-slate-800 dark:text-gray-300 px-2 py-1 rounded text-xs flex items-center gap-1'><svg class='w-3 h-3 text-blue-400' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' stroke='currentColor' stroke-width='2'/><circle cx='12' cy='12' r='4' stroke='currentColor' stroke-width='2'/></svg>${f}</span>`).join(' ');
-      // Main Image
-      const mainImg = property.images[0];
-      return `<button class="glass p-6 flex flex-col items-center hover:scale-105 transition shadow-xl dark:shadow-none focus:outline-none group property-card btn-animated"
-        data-title="${property.title}"
-        data-location="${property.location}"
-        data-price="${property.price}"
-        data-description="${property.description}"
-        data-tags='${JSON.stringify(property.tags)}'
-        data-features='${JSON.stringify(property.features)}'
-        data-images='${JSON.stringify(property.images)}'
-        data-link="${property.link}"
-        data-map="${property.map}">
-        <img src="${mainImg}" alt="${property.title} in ${property.location}" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none" loading="lazy" width="600" height="200">
-        <div class="flex flex-wrap gap-2 mb-2">${tags}</div>
-        <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">${property.title}</h4>
-        <p class="text-gray-500 text-base mb-2 dark:text-gray-400">${property.location}</p>
-        <p class="text-blue-600 font-bold text-lg dark:text-gray-200">${property.price}</p>
-      </button>`;
+      const mainImg = property.images[0] || '';
+      return `
+        <button class="property-card glass rounded-2xl shadow-lg p-6 flex flex-col transition hover:scale-105 focus:scale-105 outline-none border-2 border-transparent hover:border-blue-400 dark:hover:border-blue-600" 
+          data-id="${property.id}"
+          data-title="${property.title}"
+          data-location="${property.location}"
+          data-price="${property.price}"
+          data-description="${property.description}"
+          data-tags='${JSON.stringify(property.tags)}'
+          data-features='${JSON.stringify(property.features)}'
+          data-images='${JSON.stringify(property.images)}'
+          data-link="${property.link}"
+          data-map="${property.map}"
+          tabindex="0">
+          <img src="${mainImg}" alt="${property.title} in ${property.location}" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none" loading="lazy" width="600" height="200">
+          <div class="flex flex-wrap gap-2 mb-2">${tags}</div>
+          <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">${property.title}</h4>
+          <p class="text-gray-500 text-base mb-2 dark:text-gray-400">${property.location}</p>
+          <p class="text-blue-600 font-bold text-lg dark:text-gray-200">${property.price}</p>
+        </button>
+      `;
     }
     function renderProperties() {
       const grid = document.getElementById('propertyGrid');
@@ -652,6 +675,31 @@
           modalImg.classList.remove('modal-image-fullscreen');
         }
       });
+    });
+  </script>
+
+  <script>
+    // Hash-based routing for dynamic property modal
+    function openPropertyById(propertyId) {
+      const card = document.querySelector(`.property-card[data-id='${propertyId}']`);
+      if (card) {
+        card.click();
+      }
+    }
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash;
+      const match = hash.match(/^#\/property\/(\d+)/);
+      if (match) {
+        openPropertyById(match[1]);
+      }
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      // Open modal if hash is present on load
+      const hash = window.location.hash;
+      const match = hash.match(/^#\/property\/(\d+)/);
+      if (match) {
+        openPropertyById(match[1]);
+      }
     });
   </script>
 
