@@ -1,6 +1,6 @@
 // Property data for RN Properties
 // Add/edit properties here for data-driven listings
-const properties = [
+window.properties = [
   {
     id: 1,
     title: "3 Acre Land",
@@ -14,7 +14,7 @@ const properties = [
       "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=600&q=60&auto=compress",
       "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=600&q=60&auto=compress"
     ],
-    link: `#/property/1`,
+    link: `property.html?propertyId=1`,
     map: "https://www.google.com/maps?q=31.6340,74.8723"
   },
   {
@@ -29,7 +29,7 @@ const properties = [
       "https://5.imimg.com/data5/ANDROID/Default/2021/6/WM/MK/IT/21521902/product-jpeg.jpg?w=600&q=60&auto=compress",
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=60&auto=compress"
     ],
-    link: `#/property/2`,
+    link: `property.html?propertyId=2`,
     map: "https://www.google.com/maps?q=31.6335,74.8720"
   }
 ];

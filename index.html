@@ -136,56 +136,6 @@
     .dark .testimonial-card {
       background: linear-gradient(#1e293b, #1e293b) padding-box, linear-gradient(120deg, #2563eb, #38bdf8) border-box;
     }
-    /* Modal overlay transitions */
-    #propertyModal {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
-    }
-    #propertyModal.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    /* Modal content animation */
-    #propertyModal .modal-content {
-      transform: translateY(48px) scale(0.97);
-      opacity: 0;
-      transition: transform 0.33s cubic-bezier(.4,0,.2,1), opacity 0.33s cubic-bezier(.4,0,.2,1);
-    }
-    #propertyModal.show .modal-content {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-    /* Carousel image fade */
-    #modalImg {
-      transition: opacity 0.3s cubic-bezier(.4,0,.2,1);
-      opacity: 1;
-    }
-    #modalImg.fading {
-      opacity: 0;
-    }
-    /* Button hover effect */
-    .btn-animated {
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .btn-animated:hover, .btn-animated:focus {
-      background: #2563eb;
-      color: #fff;
-      box-shadow: 0 2px 8px 0 rgba(37,99,235,0.12);
-      transform: scale(1.07);
-    }
-    @keyframes blob1 {
-      0%, 100% { transform: scale(1) translate(0, 0); }
-      33% { transform: scale(1.08, 0.95) translate(16px, -12px); }
-      66% { transform: scale(0.95, 1.07) translate(-12px, 14px); }
-    }
-    @keyframes blob2 {
-      0%, 100% { transform: scale(1) translate(0, 0); }
-      40% { transform: scale(1.04, 0.97) translate(-10px, 12px); }
-      70% { transform: scale(0.98, 1.03) translate(12px, -10px); }
-    }
-    .animate-blob1 { animation: blob1 14s ease-in-out infinite alternate; }
-    .animate-blob2 { animation: blob2 17s ease-in-out infinite alternate; }
     /* Featured Properties Section Text - Improved Dark Mode */
     #listings, #listings .property-card, #listings h3 {
       color: #183153;
@@ -443,200 +393,7 @@
     </div>
   </section>
 
-  <!-- Modal Overlay -->
-  <div id="propertyModal" class="fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 hidden">
-    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-5xl min-h-[60vh] max-h-[90vh] overflow-auto relative modal-content" id="modalContent">
-      <!-- Modal Top Bar for Controls -->
-      <div class="absolute top-0 left-0 w-full flex justify-between items-center z-30 px-4 pt-3 md:pt-4 pointer-events-none">
-        <div class="flex gap-2">
-          <button id="fullscreenBtn" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-2xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-3 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto" title="Toggle Full Screen" aria-label="Toggle Full Screen" style="backdrop-filter: blur(4px);">
-            <svg id="fullscreenIcon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-        <div class="flex gap-2">
-          <button id="shareBtn" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto" title="Share Property" aria-label="Share Property" style="backdrop-filter: blur(4px);">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button id="closeModal" class="relative text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-2xl font-bold btn-animated bg-white/90 dark:bg-slate-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-slate-700 pointer-events-auto ml-1" title="Close" aria-label="Close" style="backdrop-filter: blur(4px);">&times;</button>
-        </div>
-      </div>
-      <!-- Image Carousel -->
-      <div class="flex flex-col md:w-1/2 bg-black/10 dark:bg-slate-800" id="modalImageCol">
-        <div class="relative flex items-center justify-center h-64 md:h-full" id="modalImageWrapper">
-          <button id="prevImg" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-3 rounded-full shadow hover:bg-blue-200 dark:hover:bg-blue-800 z-10 btn-animated text-2xl flex items-center justify-center" title="Previous Image" aria-label="Previous Image">
-            <span class="sr-only">Previous</span>
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-          </button>
-          <img id="modalImg" src="" alt="Property Image" class="rounded-xl w-full h-64 object-cover shadow-md dark:shadow-none select-none transition-all duration-300" style="max-height:100%; max-width:100%;" loading="lazy" width="600" height="300">
-          <button id="nextImg" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-700 p-3 rounded-full shadow hover:bg-blue-200 dark:hover:bg-blue-800 z-10 btn-animated text-2xl flex items-center justify-center" title="Next Image" aria-label="Next Image">
-            <span class="sr-only">Next</span>
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-        <div id="modalThumbnails" class="flex gap-2 justify-center mt-2 px-2 pb-2"></div>
-      </div>
-      <!-- Details -->
-      <div class="p-8 flex flex-col justify-center w-full md:w-1/2">
-        <div id="modalTags" class="flex flex-wrap gap-2 mb-2"></div>
-        <h4 id="modalTitle" class="text-2xl font-bold mb-2 text-blue-700 dark:text-gray-100"></h4>
-        <p id="modalLocation" class="text-gray-600 mb-2 dark:text-gray-300"></p>
-        <a id="modalMapBtn" href="#" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-medium shadow hover:bg-blue-200 transition mb-3 mt-1 hidden">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 5 19V5A1.5 1.5 0 0 1 6.5 3.5h13A1.5 1.5 0 0 1 21 5v5.5z"/><circle cx="12" cy="14" r="3"/></svg> View on Map
-        </a>
-        <p id="modalPrice" class="text-blue-600 font-bold text-lg dark:text-blue-300 mb-2"></p>
-        <div id="modalFeatures" class="flex flex-wrap gap-2 mb-2"></div>
-        <p id="modalDescription" class="text-gray-700 dark:text-gray-200 mt-2"></p>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Modal functionality with multiple images, tags, features, and description
-    function bindModalEvents() {
-      const propertyCards = document.querySelectorAll('.property-card');
-      const modal = document.getElementById('propertyModal');
-      const closeModal = document.getElementById('closeModal');
-      const modalImg = document.getElementById('modalImg');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalLocation = document.getElementById('modalLocation');
-      const modalPrice = document.getElementById('modalPrice');
-      const modalDescription = document.getElementById('modalDescription');
-      const modalThumbnails = document.getElementById('modalThumbnails');
-      const prevImg = document.getElementById('prevImg');
-      const nextImg = document.getElementById('nextImg');
-      const fullscreenBtn = document.getElementById('fullscreenBtn');
-      const modalContent = document.getElementById('modalContent');
-      const shareBtn = document.getElementById('shareBtn');
-      let currentImages = [];
-      let currentImgIdx = 0;
-      let currentLink = '';
-      let isFullscreen = false;
-      let currentPropertyId = null;
-      function updateModalImage(idx) {
-        if (currentImages.length === 0) return;
-        modalImg.classList.add('fading');
-        setTimeout(() => {
-          modalImg.src = currentImages[idx];
-          modalImg.onload = () => modalImg.classList.remove('fading');
-        }, 120);
-        // Highlight thumbnail
-        Array.from(modalThumbnails.children).forEach((thumb, i) => {
-          thumb.classList.toggle('ring-2', i === idx);
-          thumb.classList.toggle('ring-blue-500', i === idx);
-        });
-      }
-      propertyCards.forEach(card => {
-        card.addEventListener('click', () => {
-          currentPropertyId = card.getAttribute('data-id');
-          window.location.hash = `#/property/${currentPropertyId}`;
-          modalTitle.textContent = card.getAttribute('data-title');
-          modalLocation.textContent = card.getAttribute('data-location');
-          modalPrice.textContent = card.getAttribute('data-price');
-          modalDescription.textContent = card.getAttribute('data-description');
-          currentImages = JSON.parse(card.getAttribute('data-images'));
-          currentImgIdx = 0;
-          currentLink = card.getAttribute('data-link');
-          // Google Maps pin link
-          const mapUrl = card.getAttribute('data-map');
-          const mapBtn = document.getElementById('modalMapBtn');
-          if (mapBtn) {
-            if (mapUrl) {
-              mapBtn.href = mapUrl;
-              mapBtn.classList.remove('hidden');
-            } else {
-              mapBtn.classList.add('hidden');
-            }
-          }
-          // Render thumbnails
-          modalThumbnails.innerHTML = currentImages.map((img, i) => `<img src="${img}" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-blue-400 transition-all" style="object-fit:cover;" loading="lazy" width="56" height="56" data-idx="${i}">`).join('');
-          Array.from(modalThumbnails.children).forEach((thumb, i) => {
-            thumb.addEventListener('click', e => {
-              e.stopPropagation();
-              currentImgIdx = i;
-              updateModalImage(i);
-            });
-          });
-          updateModalImage(currentImgIdx);
-          modal.classList.remove('hidden');
-          setTimeout(() => modal.classList.add('show'), 10);
-        });
-      });
-      prevImg.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (currentImages.length > 0) {
-          currentImgIdx = (currentImgIdx - 1 + currentImages.length) % currentImages.length;
-          updateModalImage(currentImgIdx);
-        }
-      });
-      nextImg.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (currentImages.length > 0) {
-          currentImgIdx = (currentImgIdx + 1) % currentImages.length;
-          updateModalImage(currentImgIdx);
-        }
-      });
-      closeModal.addEventListener('click', () => {
-        modal.classList.remove('show');
-        setTimeout(() => modal.classList.add('hidden'), 350);
-        // Remove property hash from URL
-        if (window.location.hash.startsWith('#/property/')) {
-          history.replaceState(null, '', window.location.pathname + window.location.search);
-        }
-      });
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('show');
-          setTimeout(() => modal.classList.add('hidden'), 350);
-          if (window.location.hash.startsWith('#/property/')) {
-            history.replaceState(null, '', window.location.pathname + window.location.search);
-          }
-        }
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          modal.classList.remove('show');
-          setTimeout(() => modal.classList.add('hidden'), 350);
-          if (window.location.hash.startsWith('#/property/')) {
-            history.replaceState(null, '', window.location.pathname + window.location.search);
-          }
-        }
-        if (e.key === 'ArrowLeft') prevImg.click();
-        if (e.key === 'ArrowRight') nextImg.click();
-      });
-      fullscreenBtn.addEventListener('click', () => {
-        isFullscreen = !isFullscreen;
-        if(isFullscreen) {
-          modalContent.classList.add('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
-          modalImg.classList.add('modal-image-fullscreen');
-        } else {
-          modalContent.classList.remove('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
-          modalImg.classList.remove('modal-image-fullscreen');
-        }
-      });
-      shareBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        // Share menu logic (WhatsApp, Email, Copy Link)
-        const menu = document.createElement('div');
-        menu.id = 'shareMenuBg';
-        menu.className = 'fixed inset-0 z-[9999] flex items-center justify-center bg-black/40';
-        menu.innerHTML = `
-          <div class='bg-white dark:bg-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-4 min-w-[240px] pointer-events-auto'>
-            <div class='font-bold text-lg mb-2'>Share Property</div>
-            <a href='https://wa.me/?text=${encodeURIComponent(currentLink)}' target='_blank' class='btn-animated bg-green-500 text-white rounded-lg p-2 flex items-center gap-2'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path d='M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.472-.148-.67.15-.197.297-.767.967-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.209-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.076 4.366.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z'/></svg>WhatsApp</a>
-            <a href='mailto:?subject=Property%20Listing&body=${encodeURIComponent(currentLink)}' class='btn-animated bg-blue-500 text-white rounded-lg p-2 flex items-center gap-2'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path d='M4 4h16v16H4z' stroke='currentColor' stroke-width='2' fill='none'/><path d='M22,6 L12,13 L2,6' stroke='currentColor' stroke-width='2' fill='none'/></svg>Email</a>
-            <button id='copyLinkBtn' class='btn-animated bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg p-2 flex items-center gap-2'><svg class='w-5 h-5' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='9' y='9' width='13' height='13' rx='2' ry='2' stroke='currentColor' stroke-width='2' fill='none'/><path d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/></svg>Copy Link</button>
-            <button id='closeShareMenu' class='btn-animated bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg p-2 mt-2'>Close</button>
-          </div>`;
-        document.body.appendChild(menu);
-        menu.onclick = (e) => { if(e.target.id === 'shareMenuBg') menu.remove(); };
-        document.getElementById('closeShareMenu').onclick = () => menu.remove();
-        document.getElementById('copyLinkBtn').onclick = () => {
-          navigator.clipboard.writeText(currentLink);
-          document.getElementById('copyLinkBtn').textContent = 'Copied!';
-          setTimeout(() => document.getElementById('copyLinkBtn').textContent = 'Copy Link', 1500);
-        };
-      });
-    }
     // Render property cards dynamically from properties.js
     function createPropertyCard(property) {
       // Tags HTML
@@ -648,24 +405,13 @@
       }).join('');
       const mainImg = property.images[0] || '';
       return `
-        <button class="property-card glass rounded-2xl shadow-lg p-6 flex flex-col transition hover:scale-105 focus:scale-105 outline-none border-2 border-transparent hover:border-blue-400 dark:hover:border-blue-600" 
-          data-id="${property.id}"
-          data-title="${property.title}"
-          data-location="${property.location}"
-          data-price="${property.price}"
-          data-description="${property.description}"
-          data-tags='${JSON.stringify(property.tags)}'
-          data-features='${JSON.stringify(property.features)}'
-          data-images='${JSON.stringify(property.images)}'
-          data-link="${property.link}"
-          data-map="${property.map}"
-          tabindex="0">
+        <a href="property.html?propertyId=${property.id}" class="property-card block bg-white rounded-2xl shadow-lg hover:shadow-2xl transition p-5 dark:bg-slate-900 dark:shadow-none border border-blue-100 dark:border-slate-800" data-id="${property.id}" tabindex="0">
           <img src="${mainImg}" alt="${property.title} in ${property.location}" class="rounded-xl mb-4 w-full h-48 object-cover shadow-md dark:shadow-none" loading="lazy" width="600" height="200">
           <div class="flex flex-wrap gap-2 mb-2">${tags}</div>
           <h4 class="text-xl font-semibold mb-1 text-blue-800 dark:text-gray-100">${property.title}</h4>
           <p class="text-gray-500 text-base mb-2 dark:text-gray-400">${property.location}</p>
           <p class="text-blue-600 font-bold text-lg dark:text-gray-200">${property.price}</p>
-        </button>
+        </a>
       `;
     }
     function renderProperties() {
@@ -674,7 +420,6 @@
     }
     document.addEventListener('DOMContentLoaded', () => {
       renderProperties();
-      setTimeout(bindModalEvents, 0);
     });
   </script>
 
@@ -692,12 +437,25 @@
   <section id="contact" class="bg-gradient-to-r from-blue-100 via-white to-blue-100 py-16 px-4 dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
     <div class="max-w-xl mx-auto">
       <h3 class="text-3xl font-bold mb-6 text-center text-blue-700 dark:text-gray-100">Contact</h3>
-      <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-5 bg-white/90 rounded-2xl p-8 shadow-xl dark:bg-slate-700 dark:shadow-none">
-        <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400">
-        <input type="email" name="_replyto" placeholder="Your Email" required class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400">
-        <textarea name="message" rows="5" placeholder="Your Message" required class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400"></textarea>
+      <form action="https://formspree.io/f/mbloogaw" method="POST" class="space-y-5 bg-white/90 rounded-2xl p-8 shadow-xl dark:bg-slate-700 dark:shadow-none" id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400 dark:bg-white dark:text-black">
+        <input type="tel" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" title="Please enter a valid mobile number" class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400 dark:bg-white dark:text-black">
+        <input type="email" name="email" placeholder="Your Email" class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400 dark:bg-white dark:text-black">
+        <textarea name="message" rows="5" placeholder="Your Message" class="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none dark:border-slate-500 dark:focus:ring-slate-400 dark:bg-white dark:text-black"></textarea>
         <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-sky-400 text-white p-3 rounded-lg font-semibold shadow-md hover:from-blue-700 hover:to-sky-500 transition contact-btn dark:bg-gradient-to-r dark:from-slate-700 dark:via-slate-800 dark:to-slate-900 dark:text-gray-100 dark:shadow-none">Send Message</button>
       </form>
+      <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+          const name = this.elements['name'].value.trim();
+          const mobile = this.elements['mobile'].value.trim();
+          const message = this.elements['message'].value.trim();
+          if (!name || !mobile || !message) {
+            alert('Please fill in your Name, Mobile Number, and Message.');
+            e.preventDefault();
+            return false;
+          }
+        });
+      </script>
     </div>
   </section>
 
@@ -712,51 +470,6 @@
       document.querySelectorAll('section img').forEach(function(img) {
         img.setAttribute('loading', 'lazy');
       });
-    });
-  </script>
-
-  <script>
-    // Fullscreen image fix
-    document.addEventListener('DOMContentLoaded', function() {
-      const modalContent = document.getElementById('modalContent');
-      const modalImg = document.getElementById('modalImg');
-      const fullscreenBtn = document.getElementById('fullscreenBtn');
-      let isFullscreen = false;
-      fullscreenBtn.addEventListener('click', function() {
-        isFullscreen = !isFullscreen;
-        if (isFullscreen) {
-          modalContent.classList.add('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
-          modalImg.classList.add('modal-image-fullscreen');
-        } else {
-          modalContent.classList.remove('fixed','top-0','left-0','w-screen','h-screen','rounded-none','z-[999]');
-          modalImg.classList.remove('modal-image-fullscreen');
-        }
-      });
-    });
-  </script>
-
-  <script>
-    // Hash-based routing for dynamic property modal
-    function openPropertyById(propertyId) {
-      const card = document.querySelector(`.property-card[data-id='${propertyId}']`);
-      if (card) {
-        card.click();
-      }
-    }
-    window.addEventListener('hashchange', () => {
-      const hash = window.location.hash;
-      const match = hash.match(/^#\/property\/(\d+)/);
-      if (match) {
-        openPropertyById(match[1]);
-      }
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-      // Open modal if hash is present on load
-      const hash = window.location.hash;
-      const match = hash.match(/^#\/property\/(\d+)/);
-      if (match) {
-        openPropertyById(match[1]);
-      }
     });
   </script>
 
