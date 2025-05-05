@@ -21,14 +21,15 @@
     }
   </script>
   <style>
-    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #e0e7ff 0%, #fff 100%); }
-    .glass {
+    body { font-family: 'Inter', sans-serif; }
+    .glass, #propertyDetails {
       background: rgba(255, 255, 255, 0.7);
       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
       border-radius: 18px;
       padding: 32px 24px;
       margin-top: 40px;
       margin-bottom: 40px;
+      color: #111 !important;
     }
     .tag {
       display: inline-block;
@@ -57,13 +58,57 @@
     }
   </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800 dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-gray-100">
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" style="color: #111;">
+  <!-- Dark Mode Toggle -->
+  <div class="fixed top-6 right-6 z-50">
+    <button id="toggleDark" aria-label="Toggle dark mode" class="p-2 rounded-full bg-white/80 dark:bg-slate-700 shadow hover:scale-110 transition">
+      <!-- Sun Icon for Light Mode -->
+      <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400 dark:hidden" fill="currentColor" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/>
+        <g stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+      <!-- Moon Icon for Dark Mode -->
+      <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-200 hidden dark:inline" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/>
+      </svg>
+    </button>
+  </div>
   <div class="container mx-auto max-w-2xl">
     <a href="index.html" class="inline-block mt-6 mb-2 text-blue-600 hover:underline">← Back to Listings</a>
     <div id="propertyDetails" class="glass"></div>
   </div>
   <script src="properties.js"></script>
   <script>
+    // Dark mode toggle logic
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById('toggleDark');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    // Load preference
+    if(localStorage.getItem('theme') === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme'))) {
+      setDarkMode(true);
+    }
+    toggleBtn.addEventListener('click', () => {
+      setDarkMode(!html.classList.contains('dark'));
+    });
+    function setDarkMode(on) {
+      if(on) {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
     // Get propertyId from URL
     function getPropertyIdFromUrl() {
       const params = new URLSearchParams(window.location.search);
